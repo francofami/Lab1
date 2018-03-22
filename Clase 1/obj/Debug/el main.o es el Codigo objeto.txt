@@ -1,0 +1,1 @@
+se crea cuando se compila, es la traducción a binario del programa.

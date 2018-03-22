@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1521725410 source:c:\users\alumno\downloads\sdsad\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+

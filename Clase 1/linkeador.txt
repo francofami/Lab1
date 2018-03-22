@@ -1,0 +1,2 @@
+se fija que funciones se están usando y 
+linkea esas funciones al codigo objecto

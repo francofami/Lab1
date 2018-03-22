@@ -7,7 +7,7 @@ int main()
     Mascaras de entrada:
     int: %d
     float: %f
-    char: %c
+    char: %cscanf("%c",&letra);
     */
 
     int numero1;

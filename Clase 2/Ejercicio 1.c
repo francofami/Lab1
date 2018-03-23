@@ -77,8 +77,12 @@ int main()
         respuesta = getch();
     } while(respuesta!='n');
 
-    porcentajeNegativos=(contadorNegativos*100)/contador;
-    porcentajePositivos=(contadorPositivos*100)/contador;
+    /* Como en el resultado quiero mostrar un porcentaje con resultado en float pero estoy dividiendo dos int
+    tengo que hacer un "casteo explícito" que es pasar un int a un float en este caso (tipo de variable numerica a otra)
+    variablefloat=(float)int/int; */
+
+    porcentajeNegativos=(float)(contadorNegativos*100)/contador;
+    porcentajePositivos=100-porcentajeNegativos;
 
     printf("La cantidad de pares es: %d\n", contadorPares);
     printf("La cantidad de impares es: %d\n", contadorImpares);

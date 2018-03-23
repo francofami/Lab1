@@ -25,7 +25,7 @@ int main()
     //letra=getch(); Cuando apretemos una tecla no se dibuja en pantalla
     //letra=getche(); Cuando apretemos una tecla se va a dibujar en pantalla
     //fflush(stdin); Opcion para limpiar el buffer de entrada para que podamos ingresar un caracter se pone antes de scanf("%c",&letra);
-    //scanf(" %c", &letra); Otra opcion: dejo un espacio entre % y c para que me lea el caracter.
+    //scanf(" %c", &letra); Otra opcion: dejo un espacio entre " y % para que me lea el caracter.
 
     suma=numero1+numero2;
 

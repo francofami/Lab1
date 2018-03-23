@@ -15,7 +15,7 @@ int main()
 
     float porcentajePositivos, porcentajeNegativos;
     char respuesta;
-    int contadorPares=0, contadorImpares=0, contadorPositivos=0, contadorNegativos=0, contador=0, contadorDos=0, numero, maximo, minimo, maximopar=0;
+    int flag=0, contadorPares=0, contadorImpares=0, contadorPositivos=0, contadorNegativos=0, contador=0, contadorDos=0, numero, maximo, minimo, maximopar=0;
 
     do
     {
@@ -48,25 +48,20 @@ int main()
             contadorPositivos++;
         }
 
-        if(contador==1)
-        {
-            minimo=numero;
-            maximo=numero;
-        }
-        else if(minimo>numero)
-        {
-            minimo=numero;
-        }
-        if(maximo<numero)
+        if(flag==0 || numero>maximo)
         {
             maximo=numero;
+        }
+        if(flag==0 || numero<minimo)
+        {
+            minimo=numero;
+            flag=1;
         }
 
         if(maximopar<numero && numero%2==0)
         {
             maximopar=numero;
         }
-
 
         if(numero>=125 && numero<=236)
         {
@@ -79,15 +74,17 @@ int main()
 
     /* Como en el resultado quiero mostrar un porcentaje con resultado en float pero estoy dividiendo dos int
     tengo que hacer un "casteo explícito" que es pasar un int a un float en este caso (tipo de variable numerica a otra)
-    variablefloat=(float)int/int; */
+    variablefloat=(float)int/int;
+    En un casteo implicito tenes perdida de datos (ej de float a int) en C no hay problema en hacer esto, en cambio en otros
+    lenguajes solo se puede pasar de un tipo de menor precision a uno de mayor */
 
     porcentajeNegativos=(float)(contadorNegativos*100)/contador;
     porcentajePositivos=100-porcentajeNegativos;
 
     printf("La cantidad de pares es: %d\n", contadorPares);
     printf("La cantidad de impares es: %d\n", contadorImpares);
-    printf("El porcentaje de numeros positivos es: %.2f\n", porcentajePositivos);
-    printf("El porcentaje de numeros negativos es: %.2f\n", porcentajeNegativos);
+    printf("El porcentaje de numeros positivos es: %.2f%%\n", porcentajePositivos);
+    printf("El porcentaje de numeros negativos es: %.2f%%\n", porcentajeNegativos);
     printf("El maximo es: %d\n", maximo);
     printf("El minimo es: %d\n", minimo);
     if(maximopar!=0)

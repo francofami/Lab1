@@ -68,7 +68,7 @@ int main()
         }
 
 
-        if(numero>125 && numero<236)
+        if(numero>=125 && numero<=236)
         {
             contadorDos++;
         }
@@ -92,5 +92,6 @@ int main()
         printf("No hay maximo numero par.\n");
     printf("La cantidad de numeros comprendidos entre 125 y 236 es: %d", contadorDos);
 
+    getch();
     return 0;
 }

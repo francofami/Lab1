@@ -1,0 +1,14 @@
+File -> New -> Empty file -> Lo guardo como .h (Acá van las firmas/prototipos)
+File -> New -> Empty file -> Lo guardo como .c (Acá van las funciones)
+
+Por cada .c debo crear un .h
+
+En el main y en el .c que cree debo incluir la biblioteca arriba de todo.
+Poner #include <stdio.h> en el .c que cree
+
+Para cada tipos de funciones debo crear una biblioteca.
+
+Si quiero agregar bibliotecas a un proyecto hago click derecho a donde esta el nombre del
+proyecto en codeblocks, le doy click derecho -> add files e incluyo el .c y el .h que quiera
+Para esto antes debo compiar el .c y el .h a la carpeta del proyecto que estoy usando.
+

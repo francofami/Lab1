@@ -37,7 +37,7 @@ int main()
     }
 
     edad=getEntero("Ingrese su edad: ","Error, ingrese edad entre 1 y 199", 199, 1);
-    printf("La edad ingresada es: %d", edad)
+    printf("La edad ingresada es: %d", edad);
 
     return 0;
 }
@@ -93,7 +93,7 @@ int getEntero(char* mensaje, char* mensajeError, int maximo, int minimo)
             break;
         }
         printf("%s", mensajeError);
-    }while(0);
+    }while(1==1);
 
     return retorno;
 }

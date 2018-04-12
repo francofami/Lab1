@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1523540401 source:d:\yo\clase 5\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funcionesVectores.h"
+
+1523540354 d:\yo\clase 5\funcionesvectores.h
+
+1523540511 source:d:\yo\clase 5\funcionesvectores.c
+	"funcionesVectores.h"
+

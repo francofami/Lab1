@@ -17,6 +17,12 @@ int main()
     int lengthVector, lenghtPosicion, lenghtTotal, vector[5]={5,2,9,6,5}, cantidadPares, indexLetra;
     char letras[]={'f','g','i','m','q'};
     char ingreseCaracter;
+    int a=9, b=5, c;
+
+    //SWAP
+    c=a;
+    a=b;
+    b=c;
 
     lengthVector=sizeof(vector);
     lenghtPosicion=sizeof(vector[0]);

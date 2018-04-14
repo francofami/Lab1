@@ -29,11 +29,11 @@ int main()
         gets(buffer);
     }while(strlen(buffer)>14);
 
+    //De esta forma lo que hago es validar no me ingresen mas de 14 caracteres en palabra1.
+
     strcpy(palabra1, buffer);
 
     strcat(buffer, palabra2); //strcat(destino, origen) Es para concatenar strings.
-
-    //De esta forma lo que hago es validar no me ingresen mas de 14 caracteres en palabra1.
 
     comparacion=strcmp(palabra1,palabra2);
     //strcmp() Compara dos strings, devuelve -1 si palabra1 esta antes alfabeticamente y 1 si no.
@@ -51,10 +51,5 @@ int main()
     return 0;
 }
 
-/*
-Declarar 3 variables char nombre, char apellido, char apellidoYnombre.
-(definimos nosotros la cantidad de caracteres)
-El usuario va a ingresar el apellido, el nombre y en la variable apellido y nombre deberia quedar:
-    apellidoYnombre = "Apellido, Nombre"
-A las variables nombre y apellido NO HAY QUE MODIFICARLAS.
-*/
+
+

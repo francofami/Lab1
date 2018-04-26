@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1524753969 source:d:\yo\estructuras\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"nosequenombreponerle.h"
+	"localidad.h"
+
+1524752973 d:\yo\estructuras\nosequenombreponerle.h
+
+1524754240 d:\yo\estructuras\localidad.h
+
+1524754544 source:d:\yo\estructuras\localidad.c
+	"localidad.h"
+

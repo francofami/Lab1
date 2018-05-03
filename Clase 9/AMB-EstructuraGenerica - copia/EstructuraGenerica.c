@@ -24,6 +24,22 @@ int eUser_init( eUsuario listado[],int limite)
     return retorno;
 }
 
+int eProducto_init( eProducto listado[],int limite)
+{
+    int retorno = -1;
+    int i;
+    if(limite > 0 && listado != NULL)
+    {
+        retorno = 0;
+        for(i=0; i<limite; i++)
+        {
+            listado[i].estado= LIBRE;
+            listado[i].idProducto= 0;
+        }
+    }
+    return retorno;
+}
+
 int eUser_buscarLugarLibre(eUsuario listado[],int limite)
 {
     int retorno = -1;

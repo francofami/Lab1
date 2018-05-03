@@ -14,6 +14,7 @@ int main()
     eProducto listaProductos[CANTIDADPRODUCTOS];
 
     eUser_init(listaUsuarios,CANTIDADUSUARIOS);
+    eUser_init(listaProductos,CANTIDADPRODUCTOS);
 
     while(seguir=='s')
     {

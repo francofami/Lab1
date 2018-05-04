@@ -4,6 +4,8 @@
 //#include "susFunciones.h"
 #define CANTIDADUSUARIOS 10
 #define CANTIDADPRODUCTOS 10
+#define CANTIDADVENTAS 100
+
 
 int main()
 {
@@ -12,9 +14,11 @@ int main()
 
     eUsuario listaUsuarios[CANTIDADUSUARIOS];
     eProducto listaProductos[CANTIDADPRODUCTOS];
+    eVenta listaVentas[CANTIDADVENTAS];
 
     eUser_init(listaUsuarios,CANTIDADUSUARIOS);
-    eUser_init(listaProductos,CANTIDADPRODUCTOS);
+    eProducto_init(listaProductos,CANTIDADPRODUCTOS);
+    eVenta_init(listaProductos,CANTIDADVENTAS);
 
     while(seguir=='s')
     {
@@ -46,13 +50,13 @@ int main()
                 eUser_baja(listaUsuarios,CANTIDADUSUARIOS);
                 break;
             case 4:
-                eProducto_altaPublicacion(listaProductos, listaUsuarios, CANTIDADPRODUCTOS, CANTIDADUSUARIOS);
+                eProducto_altaPublicacion(listaUsuarios, listaProductos, CANTIDADPRODUCTOS, CANTIDADUSUARIOS);
                 break;
             case 5:
-                eProducto_modificarPublicacion(listaProductos, listaUsuarios, CANTIDADPRODUCTOS, CANTIDADUSUARIOS);
+                eProducto_modificarPublicacion(listaUsuarios,listaProductos, CANTIDADPRODUCTOS, CANTIDADUSUARIOS);
                 break;
             case 6:
-
+                eProducto_cancelarPublicacion(listaUsuarios,listaProductos, CANTIDADPRODUCTOS, CANTIDADUSUARIOS);
                 break;
             case 7:
 

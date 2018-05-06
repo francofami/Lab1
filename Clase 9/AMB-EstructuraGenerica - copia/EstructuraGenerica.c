@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "EstructuraGenerica.h"
-#define TAMANIO 10
 #define OCUPADO 0
 #define LIBRE 1
 #define BORRADO -5
@@ -170,9 +169,6 @@ int eUser_mostrarListadoConBorrados(eUsuario listado[],int limite)
     return retorno;
 }
 
-
-
-
 int eUser_alta(eUsuario  listado[],int limite)
 {
     int retorno = -1;
@@ -188,13 +184,13 @@ int eUser_alta(eUsuario  listado[],int limite)
             retorno = -3;
             id = eUser_siguienteId(listado,limite); //Me da el ID siguiente al ultimo usuario ocupado, este va a ser el id del nuevo usuario.
 
-            //if(!getValidString("Nombre?","Error","Overflow", nombre,50,2))
-            //{
+            if(!getValidString("Nombre?","Error","Overflow", nombre,50,2))
+            {
                 retorno = 0;
                 strcpy(listado[indice].nombre,"Juan ");
                 listado[indice].idUsuario = id;
                 listado[indice].estado = OCUPADO;
-            //}
+            }
         }
     }
     return retorno;

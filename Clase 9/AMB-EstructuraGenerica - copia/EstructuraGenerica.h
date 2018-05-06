@@ -23,14 +23,23 @@ typedef struct
 
 #endif // ESTRUCTURAGENERICA_H_INCLUDED
 
-/** \brief Inicializa los usuarios en estado 0 (libre). Además inicializa las calificaciones, la cantidad de ventas y el id en 0.
+/** \brief Inicializa los usuarios en estado 0 (libre). Además inicializa las calificaciones y el id en 0.
  *
- * \param eUsuario[] El array que contiene los usuarios.
- * \param limite int El largo del array que contiene los usuarios.
+ * \param eUsuario[] El array que contiene a los usuarios.
+ * \param int El largo del array que contiene los usuarios.
  * \return int
  *
  */
-int eUser_init(eUsuario[],int limite);
+int eUser_init(eUsuario[],int);
+
+/** \brief Inicializa los productros en estado 0 (libre). Además inicializa la cantidad de ventas y el id en 0.
+ *
+ * \param eProducto[]  El array que contiene a los productos.
+ * \param int El largo del array que contiene los usuarios.
+ * \return int
+ *
+ */
+int eProducto_init(eProducto[],int);
 
 int eUser_buscarPorId(eUsuario[] ,int limite, int id);
 
@@ -64,7 +73,7 @@ void eProducto_mostrarUno(eProducto parametro);
 
 int eProducto_mostrarListado(eProducto[],int);
 
-int eProducto_init(eProducto[],int);
+
 
 int eProducto_cancelarPublicacion(eUsuario[], eProducto[], int, int);
 

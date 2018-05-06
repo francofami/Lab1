@@ -2,15 +2,14 @@
 #include <stdlib.h>
 #include "EstructuraGenerica.h"
 //#include "susFunciones.h"
-#define CANTIDADUSUARIOS 10
-#define CANTIDADPRODUCTOS 10
-#define CANTIDADVENTAS 100
+#define CANTIDADUSUARIOS 100
+#define CANTIDADPRODUCTOS 1000
 
 
 int main()
 {
     char seguir='s';
-    int opcion=0;
+    int opcion;
 
     eUsuario listaUsuarios[CANTIDADUSUARIOS];
     eProducto listaProductos[CANTIDADPRODUCTOS];
@@ -32,7 +31,9 @@ int main()
         printf("10- Listar usuarios\n");
         printf("11- Salir\n");
 
-        scanf("%d",&opcion);
+        do{
+            scanf("%d",&opcion);
+        }while(opcion<1 || opcion>11);
 
         system("cls");
 

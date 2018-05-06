@@ -14,11 +14,9 @@ int main()
 
     eUsuario listaUsuarios[CANTIDADUSUARIOS];
     eProducto listaProductos[CANTIDADPRODUCTOS];
-    eVenta listaVentas[CANTIDADVENTAS];
 
     eUser_init(listaUsuarios,CANTIDADUSUARIOS);
     eProducto_init(listaProductos,CANTIDADPRODUCTOS);
-    eVenta_init(listaProductos,CANTIDADVENTAS);
 
     while(seguir=='s')
     {
@@ -47,7 +45,7 @@ int main()
                 eUser_modificacion(listaUsuarios,CANTIDADUSUARIOS);
                 break;
             case 3:
-                eUser_baja(listaUsuarios,CANTIDADUSUARIOS);
+                eUser_baja(listaUsuarios,CANTIDADUSUARIOS, listaProductos, CANTIDADPRODUCTOS);
                 break;
             case 4:
                 eProducto_altaPublicacion(listaUsuarios, listaProductos, CANTIDADPRODUCTOS, CANTIDADUSUARIOS);
@@ -59,19 +57,18 @@ int main()
                 eProducto_cancelarPublicacion(listaUsuarios,listaProductos, CANTIDADPRODUCTOS, CANTIDADUSUARIOS);
                 break;
             case 7:
-
+                eProducto_comprarProducto(listaUsuarios,listaProductos, CANTIDADPRODUCTOS, CANTIDADUSUARIOS);
                 break;
             case 8:
-
+                eUser_listarPublicacionesUsuario(listaUsuarios,CANTIDADUSUARIOS, listaProductos,CANTIDADPRODUCTOS);
                  break;
             case 9:
-
+                eProducto_mostrarListado(listaProductos,CANTIDADPRODUCTOS);
                 break;
             case 10:
-
+                eUser_listarCalificaciones(listaUsuarios,CANTIDADUSUARIOS, listaProductos,CANTIDADPRODUCTOS);
                 break;
             case 11:
-
                 seguir = 'n';
                 break;
         }

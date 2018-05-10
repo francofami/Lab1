@@ -7,38 +7,29 @@
 #define BORRADO -5
 
 
-int eUser_init(eUsuario listado[],int limite)
+void eUser_init(eUsuario listado[],int limite)
 {
-    int retorno = -1;
     int i;
-    if(limite > 0 && listado != NULL)
-    {
-        retorno = 0;
+
         for(i=0; i<limite; i++)
         {
             listado[i].estado= LIBRE;
             listado[i].idUsuario= 0;
             listado[i].calificacion=0;
         }
-    }
-    return retorno;
 }
 
-int eProducto_init(eProducto listado[],int limite)
+void eProducto_init(eProducto listado[],int limite)
 {
-    int retorno = -1;
     int i;
-    if(limite > 0 && listado != NULL)
-    {
-        retorno = 0;
+
         for(i=0; i<limite; i++)
         {
             listado[i].estado = LIBRE;
             listado[i].idProducto= 0;
             listado[i].cantidadVentasPromedio=0;
+            listado[i].cantidadVentas=0;
         }
-    }
-    return retorno;
 }
 
 
@@ -65,8 +56,7 @@ int eUser_siguienteId(eUsuario listado[],int limite)
 {
     int retorno = 0;
     int i;
-    if(limite > 0 && listado != NULL)
-    {
+
         for(i=0; i<limite; i++)
         {
             if(listado[i].estado == OCUPADO)
@@ -78,7 +68,6 @@ int eUser_siguienteId(eUsuario listado[],int limite)
 
             }
         }
-    }
 
     return retorno+1;
 }
@@ -104,32 +93,11 @@ int eUser_buscarPorId(eUsuario listado[] ,int limite, int id)
 }
 
 
-void eUser_mostrarUno(eUsuario parametro)
-{
-     printf("\n Nombre: %s - ID: %d\n",parametro.nombre,parametro.idUsuario,parametro.estado);
-}
+
 
 void eProducto_mostrarUno(eProducto parametro)
 {
      printf("\n Nombre: %s - ID producto: %d - Precio: %.2f - Stock: %d - Vendidos: %d\n",parametro.nombre,parametro.idProducto,parametro.precio,parametro.stock, parametro.cantidadVentas);
-}
-
-int eUser_mostrarListado(eUsuario listado[],int limite)
-{
-    int retorno = -1;
-    int i;
-    if(limite > 0 && listado != NULL)
-    {
-        retorno = 0;
-        for(i=0; i<limite; i++)
-        {
-            if(listado[i].estado==OCUPADO)
-            {
-                eUser_mostrarUno(listado[i]);
-            }
-        }
-    }
-    return retorno;
 }
 
 int eProducto_mostrarListado(eProducto listado[],int limite)
@@ -174,6 +142,7 @@ int eUser_alta(eUsuario  listado[],int limite)
     int retorno = -1;
     int id;
     int indice;
+    int validar;
 
     if(limite > 0 && listado != NULL)
     {
@@ -184,26 +153,49 @@ int eUser_alta(eUsuario  listado[],int limite)
             retorno = -3;
             id = eUser_siguienteId(listado,limite); //Me da el ID siguiente al ultimo usuario ocupado, este va a ser el id del nuevo usuario.
 
-            if(!getValidString("Nombre?","Error","Overflow", nombre,50,2))
+            do
             {
-                retorno = 0;
-                strcpy(listado[indice].nombre,"Juan ");
-                listado[indice].idUsuario = id;
-                listado[indice].estado = OCUPADO;
-            }
+                printf("Ingrese nombre: ");
+                fflush(stdin);
+                gets(listado[indice].nombre);
+                validar=validarNombre(listado[indice]);
+            }while(validar==-1);
+
+            retorno = 0;
+            listado[indice].idUsuario = id;
+            listado[indice].estado = OCUPADO;
         }
     }
     return retorno;
 }
 
-int eUser_modificacion(eUsuario listado[] ,int limite)
+int validarNombre(eUsuario parametro)
 {
-    int id, indiceUser=-1;
+    int retorno=-1;
+
+    int i;
+    for(i=0; i<50; i++)
+    {
+        if((isalpha(parametro.nombre[i])))
+        {
+            retorno=1;
+        }
+    }
+
+    return retorno;
+}
+
+
+
+void eUser_modificacion(eUsuario listado[] ,int limite)
+{
+    int id;
 
     eUser_mostrarListado(listado,limite);
 
-    printf("\nIngrese ID de usuario a modificar: ");
-    scanf("%d",&id);
+    do{
+        printf("\nIngrese ID de usuario a modificar: ");
+        scanf("%d",&id);
 
     indiceUser=eUser_buscarPorId(listado,limite,id);
 
@@ -217,17 +209,20 @@ int eUser_modificacion(eUsuario listado[] ,int limite)
 
         eUser_mostrarUno(listado[indiceUser]);
     }
+    else
+        printf("El ID ingresado no coincide con ningun usuario.");
 
-    return indiceUser;
+    }while(indiceUser<0);
 }
 
-int eUser_baja(eUsuario listado[] ,int limiteUsuarios, eProducto listadoProductos[],int limiteProductos)
+void eUser_baja(eUsuario listado[] ,int limiteUsuarios, eProducto listadoProductos[],int limiteProductos)
 {
-    int id, indiceUser=-1;
+    int id;
 
     eUser_mostrarListado(listado,limiteUsuarios);
 
-    printf("\nIngrese ID de usuario a dar de baja: ");
+    do{
+        printf("\nIngrese ID de usuario a dar de baja: ");
     scanf("%d",&id);
 
     indiceUser=eUser_buscarPorId(listado,limiteUsuarios,id);
@@ -243,8 +238,73 @@ int eUser_baja(eUsuario listado[] ,int limiteUsuarios, eProducto listadoProducto
 
         eProducto_borrarProductosPorIdUsuario(listadoProductos, listado, limiteProductos, limiteUsuarios, id);
     }
+    else
+        printf("El ID ingresado no coincide con ningun usuario.");
+    }while(indiceUser<0);
 
-    return indiceUser;
+}
+
+void eUser_mostrarUno(eUsuario parametro)
+{
+     printf("\n Nombre: %s - ID: %d\n",parametro.nombre,parametro.idUsuario,parametro.estado);
+}
+
+void eUser_mostrarListado(eUsuario listado[],int limite)
+{
+    int i;
+
+        for(i=0; i<limite; i++)
+        {
+            if(listado[i].estado==OCUPADO)
+            {
+                eUser_mostrarUno(listado[i]);
+            }
+        }
+
+}
+
+int eProducto_altaPublicacion(eUsuario listadoUsuarios[], eProducto listadoProductos[], int largoProductos, int largoUsuarios)
+{
+    int idUsuario, indiceVacio=-1, idProducto, retorno=-1;
+
+    eUser_mostrarListado(listadoUsuarios,largoUsuarios);
+
+    printf("\nIngrese ID de usuario que publica: ");
+    scanf("%d",&idUsuario);
+
+    if(largoProductos > 0 && listadoProductos != NULL)
+    {
+        retorno=-2;
+        indiceVacio=eProducto_buscarLugarLibre(listadoProductos,largoProductos);
+
+    if(indiceVacio >= 0)
+        {
+            retorno = -3;
+
+            idProducto=eProducto_siguienteId(listadoProductos,largoProductos);
+            listadoProductos[indiceVacio].idProducto=idProducto;
+            listadoProductos[indiceVacio].idUsuario=idUsuario;
+
+            retorno=0;
+
+            printf("\nIngrese nombre de producto: ");
+            fflush(stdin);
+            gets(listadoProductos[indiceVacio].nombre);
+
+            printf("\nIngrese precio del producto: ");
+            scanf("%f",&listadoProductos[indiceVacio].precio);
+
+            printf("\nIngrese stock del producto: ");
+            scanf("%d",&listadoProductos[indiceVacio].stock);
+
+            listadoProductos[indiceVacio].idUsuario=idUsuario;
+            listadoProductos[indiceVacio].estado=OCUPADO;
+        }
+
+
+    }
+
+    return retorno;
 }
 
 int eProducto_buscarLugarLibre(eProducto listadoProductos[],int limite)
@@ -288,52 +348,7 @@ int eProducto_siguienteId(eProducto listadoProductos[],int limite)
     return retorno+1;
 }
 
-int eProducto_altaPublicacion(eUsuario listadoUsuarios[], eProducto listadoProductos[], int largoProductos, int largoUsuarios)
-{
-    int idUsuario, indiceVacio=-1, idProducto, retorno=-1;
 
-    eUser_mostrarListado(listadoUsuarios,largoUsuarios);
-
-    printf("\nIngrese ID de usuario que publica: ");
-    scanf("%d",&idUsuario);
-
-    if(largoProductos > 0 && listadoProductos != NULL)
-    {
-        retorno=-2;
-        indiceVacio=eProducto_buscarLugarLibre(listadoProductos,largoProductos);
-
-    if(indiceVacio >= 0)
-        {
-            retorno = -3;
-
-            idProducto=eProducto_siguienteId(listadoProductos,largoProductos);
-            listadoProductos[indiceVacio].idProducto=idProducto;
-            listadoProductos[indiceVacio].idUsuario=idUsuario;
-
-            //if(!getValidString("Nombre?","Error","Overflow", nombre,50,2))
-            //{
-            retorno=0;
-
-            printf("\nIngrese nombre de producto: ");
-            fflush(stdin);
-            gets(listadoProductos[indiceVacio].nombre);
-
-            printf("\nIngrese precio del producto: ");
-            scanf("%f",&listadoProductos[indiceVacio].precio);
-
-            printf("\nIngrese stock del producto: ");
-            scanf("%d",&listadoProductos[indiceVacio].stock);
-
-            listadoProductos[indiceVacio].idUsuario=idUsuario;
-            listadoProductos[indiceVacio].estado=OCUPADO;
-            //
-        }
-
-
-    }
-
-    return retorno;
-}
 
 int eProducto_modificarPublicacion(eUsuario listadoUsuarios[], eProducto listadoProductos[], int largoProductos, int largoUsuarios)
 {
@@ -378,7 +393,7 @@ void eProducto_mostrarProductosPorIdUsuario(eProducto listadoProductos[],eUsuari
         {
             if(listadoProductos[i].estado == OCUPADO && listadoProductos[i].idUsuario == id)
             {
-                printf("\n Nombre: - %s ID producto: - %d Precio: %.2f - Stock: %d - Vendidos: %d\n", listadoProductos[i].nombre, listadoProductos[i].idProducto, listadoProductos[i].precio, listadoProductos[i].stock, listadoProductos[i].cantidadVentas);
+                printf("\n Nombre: %s - ID producto: - %d Precio: %.2f - Stock: %d - Vendidos: %d\n", listadoProductos[i].nombre, listadoProductos[i].idProducto, listadoProductos[i].precio, listadoProductos[i].stock, listadoProductos[i].cantidadVentas);
             }
         }
     }

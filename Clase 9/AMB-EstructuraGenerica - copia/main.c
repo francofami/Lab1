@@ -9,7 +9,7 @@
 int main()
 {
     char seguir='s';
-    int opcion;
+    int opcion, retorno;
 
     eUsuario listaUsuarios[CANTIDADUSUARIOS];
     eProducto listaProductos[CANTIDADPRODUCTOS];
@@ -40,7 +40,13 @@ int main()
         switch(opcion)
         {
             case 1:
-                eUser_alta(listaUsuarios,CANTIDADUSUARIOS);
+                {
+                  retorno=eUser_alta(listaUsuarios,CANTIDADUSUARIOS);
+                  if(retorno!=0)
+                  printf("Error, no se pudo hacer la alta del usuario. ");
+                  if(retorno<0)
+                  printf("No hay mas lugar libre.\n");
+                }
                 break;
             case 2:
                 eUser_modificacion(listaUsuarios,CANTIDADUSUARIOS);

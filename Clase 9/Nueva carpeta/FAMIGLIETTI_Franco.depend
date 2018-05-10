@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1525964399 source:d:\famiglietti, franco\famiglietti_franco\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funciones.h"
+	<time.h>
+
+1525964055 d:\famiglietti, franco\famiglietti_franco\funciones.h
+
+1525964055 source:d:\famiglietti, franco\famiglietti_franco\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+

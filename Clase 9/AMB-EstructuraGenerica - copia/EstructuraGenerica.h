@@ -80,11 +80,19 @@ int eUser_alta(eUsuario[] ,int limite);
 
 /** \brief Valida que solo se ingresen letras.
  *
- * \param parametro eUsuario Los parametros de un solo usuario.
- * \return int
+ * \param nombre Una copia del nombre ingresado por el usuario.
+ * \return int Devuelve 0 en caso de error y un 1 si esta bien.
  *
  */
-int validarNombre(eUsuario parametro);
+int validarNombre(char nombre[]);
+
+/** \brief Valida que solo se ingresen numeros
+ *
+ * \param numero int Una copia del numero ingresado por el usuario.
+ * \return int Devuelve 0 en caso de error y un 1 si esta bien.
+ *
+ */
+int validarNumero(char numero[]);
 
 /** \brief Permite modificar el nombre del usuario elegido.
  *

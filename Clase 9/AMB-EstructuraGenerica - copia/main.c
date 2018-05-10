@@ -10,6 +10,7 @@ int main()
 {
     char seguir='s';
     int opcion, retorno;
+    char opcionString[2];
 
     eUsuario listaUsuarios[CANTIDADUSUARIOS];
     eProducto listaProductos[CANTIDADPRODUCTOS];
@@ -32,8 +33,10 @@ int main()
         printf("11- Salir\n");
 
         do{
+            fflush(stdin);
             scanf("%d",&opcion);
-        }while(opcion<1 || opcion>11);
+            itoa(opcion, opcionString, 2);
+        }while(opcion<1 || opcion>11 || validarNumero(opcionString)==0);
 
         system("cls");
 

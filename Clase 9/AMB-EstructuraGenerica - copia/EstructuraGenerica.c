@@ -143,6 +143,7 @@ int eUser_alta(eUsuario  listado[],int limite)
     int id;
     int indice;
     int validar;
+    char nombre[50];
 
     if(limite > 0 && listado != NULL)
     {
@@ -158,8 +159,10 @@ int eUser_alta(eUsuario  listado[],int limite)
                 printf("Ingrese nombre: ");
                 fflush(stdin);
                 gets(listado[indice].nombre);
-                validar=validarNombre(listado[indice]);
-            }while(validar==-1);
+                strcpy(nombre,listado[indice].nombre);
+                validar=validarNombre(nombre);
+
+            }while(validar==0);
 
             retorno = 0;
             listado[indice].idUsuario = id;
@@ -169,16 +172,36 @@ int eUser_alta(eUsuario  listado[],int limite)
     return retorno;
 }
 
-int validarNombre(eUsuario parametro)
+int validarNombre(char nombre[])
 {
-    int retorno=-1;
+    int retorno=1;
 
     int i;
-    for(i=0; i<50; i++)
+    for(i=0; i<strlen(nombre); i++)
     {
-        if((isalpha(parametro.nombre[i])))
+        if(!(isalpha(nombre[i])))
         {
-            retorno=1;
+            retorno=0;
+            printf("Error, ingrese solo caracteres. \n");
+            break;
+        }
+    }
+
+    return retorno;
+}
+
+int validarNumero(char numero[])
+{
+    int retorno=1;
+
+    int i;
+    for(i=0; i<strlen(numero); i++)
+    {
+        if(!(isdigit(numero[i])))
+        {
+            retorno=0;
+            printf("Error, ingrese solo numeros. \n");
+            break;
         }
     }
 
@@ -186,10 +209,10 @@ int validarNombre(eUsuario parametro)
 }
 
 
-
 void eUser_modificacion(eUsuario listado[] ,int limite)
 {
-    int id;
+    int id, indiceUser=-1, validar;
+    char nombre[50];
 
     eUser_mostrarListado(listado,limite);
 
@@ -203,9 +226,15 @@ void eUser_modificacion(eUsuario listado[] ,int limite)
     {
         eUser_mostrarUno(listado[indiceUser]);
 
-        printf("\nIngrese nuevo nombre: ");
+        do{
+            printf("\nIngrese nuevo nombre: ");
         fflush(stdin);
         gets(listado[indiceUser].nombre);
+        strcpy(nombre, listado[indiceUser].nombre);
+        validar=validarNombre(nombre);
+        }while(validar==0);
+
+
 
         eUser_mostrarUno(listado[indiceUser]);
     }
@@ -217,15 +246,16 @@ void eUser_modificacion(eUsuario listado[] ,int limite)
 
 void eUser_baja(eUsuario listado[] ,int limiteUsuarios, eProducto listadoProductos[],int limiteProductos)
 {
-    int id;
+    int id, indiceUser=-1;
 
     eUser_mostrarListado(listado,limiteUsuarios);
 
     do{
         printf("\nIngrese ID de usuario a dar de baja: ");
-    scanf("%d",&id);
+        fflush(stdin);
+        scanf("%d",&id);
 
-    indiceUser=eUser_buscarPorId(listado,limiteUsuarios,id);
+        indiceUser=eUser_buscarPorId(listado,limiteUsuarios,id);
 
     if(indiceUser>=0)
     {

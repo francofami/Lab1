@@ -5,10 +5,10 @@
 #define OCUPADO 0
 #define LIBRE 1
 #define BORRADO -5
-#define ALPHA_ROMEO 2
-#define FERRARI 3
-#define AUDI 4
-#define OTRO 5
+#define ALPHA_ROMEO 1
+#define FERRARI 2
+#define AUDI 3
+#define OTRO 4
 #include <time.h>
 
 void inicializarPropietariosHardCode(ePropietario listadoPropietarios[])
@@ -269,7 +269,7 @@ void ePropietario_mostrarListado(ePropietario listadoPropietarios[],int limite)
 {
     int i;
 
-    printf("ID          Nombre              Direccion          Tarjeta");
+    printf("ID          Nombre          Direccion          Tarjeta");
         for(i=0; i<limite; i++)
         {
             if(listadoPropietarios[i].estado==OCUPADO)
@@ -323,6 +323,7 @@ void eAuto_ingreso(eAuto listadoAutos[],ePropietario listadoPropietarios[], int 
             scanf("%d",&listadoAutos[indiceVacio].marca);
 
             printf("\nIngrese patente: ");
+            fflush(stdin);
             gets(listadoAutos[indiceVacio].patente);
 
             listadoAutos[indiceVacio].idPropietario=idUsuario;
@@ -362,18 +363,37 @@ int eAuto_buscarLugarLibre(eAuto listado[],int limite)
 
 void eAuto_mostrarUno(eAuto parametro)
 {
-     printf("\n %d         %d       %s           %s\n",parametro.idAuto,parametro.idPropietario,parametro.marca,parametro.patente);
+    char marca[20];
+
+    if(parametro.marca==1)
+    {
+        strcpy(marca,"ALPHA_ROMEO");
+    }
+    if(parametro.marca==2)
+    {
+        strcpy(marca,"FERRARI    ");
+    }
+    if(parametro.marca==3)
+    {
+        strcpy(marca,"AUDI       ");
+    }
+    if(parametro.marca==4)
+    {
+        strcpy(marca,"OTRO       ");
+    }
+    printf("\n %d         %d               %s                  %s\n",parametro.idAuto,parametro.idPropietario,marca,parametro.patente);
 }
 
 void eAuto_mostrarListado(eAuto listadoAutos[],int limite)
 {
     int i;
 
+        printf("ID Auto      ID Prop.       Marca                      Patente");
+
         for(i=0; i<limite; i++)
         {
             if(listadoAutos[i].estado==OCUPADO)
             {
-                printf("ID Auto      ID Prop.       Marca      Patente");
                 eAuto_mostrarUno(listadoAutos[i]);
             }
         }
@@ -395,7 +415,7 @@ void hardcoreIngresos(eAuto listadoAutos[])
 {
     int id[]= {1,2,3,4,5,6,7,8,9,10};
     char patente[][20]= {"AAA","CCC","DDD","BBB","ZZZ","III","HHH","EEE","FFF","GGG"};
-    int marca[]= {2,4,4,3,3,4,4,5,4,2};
+    int marca[]= {1,3,3,2,2,3,3,4,3,1};
     int propietario[]= {2,1,2,1,3,3,4,1,4,3};
 
     int i;

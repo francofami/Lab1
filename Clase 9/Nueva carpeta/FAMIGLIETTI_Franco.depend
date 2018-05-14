@@ -13,3 +13,17 @@
 	<stdlib.h>
 	"funciones.h"
 
+1526254806 source:d:\usuarios\franco\downloads\lab1-master\lab1-master\clase 9\nueva carpeta\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funciones.h"
+	<time.h>
+
+1525950332 d:\usuarios\franco\downloads\lab1-master\lab1-master\clase 9\nueva carpeta\funciones.h
+
+1525950332 source:d:\usuarios\franco\downloads\lab1-master\lab1-master\clase 9\nueva carpeta\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+

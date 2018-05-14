@@ -18,6 +18,7 @@ typedef struct
     int idPropietario;
     int idAuto;
     int estado;
+    float importe;
 
 }eAuto;
 
@@ -201,4 +202,10 @@ void eAuto_mostrarListado(eAuto listadoAutos[],int limite);
  *
  */
 void eAuto_egreso(eAuto listadoAutos[],ePropietario listadoPropietarios[], int largoAutos, int largoPropietarios);
+
+void egresosHardcode(eAuto listadoAutos[]);
+
+int devolverHorasEstadia();
+
+void eAuto_egreso(eAuto listaAutos[],ePropietario listaPropietarios[],int largoAutos,int largoPropietarios);
 

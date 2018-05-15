@@ -27,10 +27,17 @@
 	<stdlib.h>
 	"funciones.h"
 
-1526249526 source:c:\users\franco\downloads\lab1-master\lab1-master\clase 9\nueva carpeta\main.c
+1526391364 source:c:\users\franco\downloads\lab1-master\lab1-master\clase 9\nueva carpeta\main.c
 	<stdio.h>
 	<stdlib.h>
 	"funciones.h"
 
-1526332044 c:\users\franco\downloads\lab1-master\lab1-master\clase 9\nueva carpeta\funciones.h
+1526388180 c:\users\franco\downloads\lab1-master\lab1-master\clase 9\nueva carpeta\funciones.h
+
+1526391690 source:c:\users\franco\downloads\lab1-master\lab1-master\clase 9\nueva carpeta\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funciones.h"
+	<time.h>
 

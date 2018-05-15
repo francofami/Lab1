@@ -5,6 +5,7 @@
 #define OCUPADO 0
 #define LIBRE 1
 #define BORRADO -5
+#define EGRESADO -6
 #define ALPHA_ROMEO 1
 #define FERRARI 2
 #define AUDI 3
@@ -254,7 +255,7 @@ if(opcion==1)
         printf("\n");
     }
     else
-        printf("El ID ingresado no coincide con ningun usuario.");
+        printf("El ID ingresado no coincide con ningun propietario. \n");
 }
 
 
@@ -429,7 +430,7 @@ void egresosHardcode(eAuto listadoAutos[])
     for(i=0; i<10; i++)
     {
         listadoAutos[i].marca=marca[i];
-        listadoAutos[i].estado = LIBRE;
+        listadoAutos[i].estado = EGRESADO;
         listadoAutos[i].importe=importe[i];
     }
 }
@@ -470,17 +471,33 @@ int devolverHorasEstadia()
 
 void eAuto_egreso(eAuto listaAutos[],ePropietario listaPropietarios[],int largoAutos,int largoPropietarios)
 {
-    eAuto_mostrarListado(listaAutos,largoAutos);
-
-    int id, indiceAuto, indicePropietario, horas;
+    int id, indiceAuto, indicePropietario, horas,i, flag=0;
     float importe, acumuladorAlpha=0, acumuladorFerrari=0, acumuladorAudi=0, acumuladorOtros=0, acumuladorEstacionamiento=0;
     char marca[20];
 
-    printf("Ingrese ID de auto que egresa: ");
-    scanf("%d", &id);
+    for(i=0;i<largoAutos;i++)
+    {
+        if(listaAutos[i].estado==OCUPADO)
+        {
+            eAuto_mostrarListado(listaAutos,largoAutos);
 
-    indiceAuto=eAuto_buscarPorId(listaAutos,largoAutos,id);
+            printf("Ingrese ID de auto que egresa: ");
+            scanf("%d", &id);
+            break;
+        }
+        else
+        {
+            printf("No hay autos estacionados.\n");
+            flag=1;
+            break;
+        }
+    }
+
+    if(flag!=1)
+    {
+        indiceAuto=eAuto_buscarPorId(listaAutos,largoAutos,id);
     indicePropietario=ePropietario_buscarPorId(listaPropietarios,largoPropietarios,listaAutos[indiceAuto].idPropietario);
+
 
     if(indiceAuto>=0)
     {
@@ -489,6 +506,7 @@ void eAuto_egreso(eAuto listaAutos[],ePropietario listaPropietarios[],int largoA
         {
             strcpy(marca,"ALPHA_ROMEO");
             importe=horas*150;
+            listaAutos[indiceAuto].importe=importe;
             acumuladorAlpha+=importe;
         }
 
@@ -496,6 +514,7 @@ void eAuto_egreso(eAuto listaAutos[],ePropietario listaPropietarios[],int largoA
         {
             strcpy(marca,"FERRARI");
             importe=horas*175;
+            listaAutos[indiceAuto].importe=importe;
             acumuladorFerrari+=importe;
         }
 
@@ -503,6 +522,7 @@ void eAuto_egreso(eAuto listaAutos[],ePropietario listaPropietarios[],int largoA
         {
             strcpy(marca,"AUDI");
             importe=horas*200;
+            listaAutos[indiceAuto].importe=importe;
             acumuladorAudi+=importe;
         }
 
@@ -510,13 +530,17 @@ void eAuto_egreso(eAuto listaAutos[],ePropietario listaPropietarios[],int largoA
         {
             strcpy(marca,"OTROS");
             importe=horas*250;
+            listaAutos[indiceAuto].importe=importe;
             acumuladorOtros+=importe;
         }
+
+        listaAutos[indiceAuto].estado=EGRESADO;
 
         printf("Nombre propietario: %s - Patente: %s - Marca: %s - Valor de estadia: %.2f\n", listaPropietarios[indicePropietario].nombreApellido, listaAutos[indiceAuto].patente, marca, importe);
     }
     else
-        printf("El ID ingresado no coincide con ningun auto estacionado.");
+        printf("El ID ingresado no coincide con ningun auto estacionado.\n");
+    }
 }
 
 int eAuto_buscarPorId(eAuto listadoAutos[] ,int limite, int id)
@@ -537,3 +561,52 @@ int eAuto_buscarPorId(eAuto listadoAutos[] ,int limite, int id)
     }
     return retorno;
 }
+
+void eAuto_mostrarEgresos(eAuto listadoAutos[], int largoAutos, ePropietario listadoPropietarios[], int largoPropietarios)
+{
+    int i, j;
+    char marca[20];
+
+    printf("Nombre propietario    Patente     Marca           Valor de estadia\n");
+
+    for(i=0;i<largoAutos;i++)
+    {
+        if(listadoAutos[i].estado==EGRESADO)
+        {
+
+            for(j=0;j<largoPropietarios;j++)
+            {
+                if(listadoAutos[i].idPropietario==listadoPropietarios[j].idPropietario)
+                {
+                   break;
+                }
+            }
+
+        if(listadoAutos[i].marca==1)
+        {
+            strcpy(marca,"ALPHA_ROMEO");
+        }
+
+        if(listadoAutos[i].marca==2)
+        {
+            strcpy(marca,"FERRARI    ");
+        }
+
+        if(listadoAutos[i].marca==3)
+        {
+            strcpy(marca,"AUDI       ");
+        }
+
+        if(listadoAutos[i].marca==4)
+        {
+            strcpy(marca,"OTROS      ");
+        }
+
+        printf("%s                   %s        %s       %.2f\n", listadoPropietarios[j].nombreApellido, listadoAutos[i].patente, marca, listadoAutos[i].importe);
+
+        }
+
+    }
+
+}
+

@@ -29,8 +29,15 @@ int main()
         printf("4- Mostrar listado\n");
         printf("5- Ingreso de auto\n");
         printf("6- Egreso de auto\n");
-        printf("7- Listar autos estacionados\n");
-        printf("8- Salir\n");
+        printf("7- Egresar autos (hardcode)\n");
+        printf("8- Listar autos estacionados\n");
+        printf("9- Listar autos egresados\n");
+        printf("10- Mostrar recaudacion total del estacionamiento\n");
+        printf("11- Mostrar recaudacion total por marca\n");
+        printf("12- Buscar autos por ID propietario\n");
+        printf("13- Mostrar datos de propietarios de autos AUDI\n");
+        printf("14- Listar autos estacionados (ordenados por patente)\n");
+        printf("15- Salir\n");
 
 
         scanf("%d",&opcion);
@@ -64,9 +71,15 @@ int main()
                 eAuto_egreso(listaAutos, listaPropietarios, CANTIDADAUTOS,CANTIDADPROPIETARIOS);
                 break;
             case 7:
-                eAuto_mostrarListado(listaAutos,CANTIDADAUTOS);
+                egresosHardcode(listaAutos);
                 break;
             case 8:
+                eAuto_mostrarListado(listaAutos,CANTIDADAUTOS);
+                break;
+            case 9:
+                eAuto_mostrarEgresos(listaAutos, CANTIDADAUTOS, listaPropietarios, CANTIDADPROPIETARIOS);
+                break;
+            case 14:
                 seguir = 'n';
                 break;
         }

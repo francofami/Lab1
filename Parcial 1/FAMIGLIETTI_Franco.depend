@@ -1,0 +1,61 @@
+# depslib dependency file v1.0
+1525964399 source:d:\famiglietti, franco\famiglietti_franco\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funciones.h"
+	<time.h>
+
+1525964055 d:\famiglietti, franco\famiglietti_franco\funciones.h
+
+1525964055 source:d:\famiglietti, franco\famiglietti_franco\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+
+1526418611 source:d:\usuarios\franco\downloads\lab1-master\lab1-master\clase 9\nueva carpeta\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funciones.h"
+	<time.h>
+
+1526418267 d:\usuarios\franco\downloads\lab1-master\lab1-master\clase 9\nueva carpeta\funciones.h
+
+1526423403 source:d:\usuarios\franco\downloads\lab1-master\lab1-master\clase 9\nueva carpeta\main.c
+	<stdio.h>
+	<stdlib.h>
+	"autos.h"
+
+1526391364 source:c:\users\franco\downloads\lab1-master\lab1-master\clase 9\nueva carpeta\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+
+1526388180 c:\users\franco\downloads\lab1-master\lab1-master\clase 9\nueva carpeta\funciones.h
+
+1526391690 source:c:\users\franco\downloads\lab1-master\lab1-master\clase 9\nueva carpeta\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funciones.h"
+	<time.h>
+
+1526422928 d:\usuarios\franco\downloads\lab1-master\lab1-master\clase 9\nueva carpeta\propietarios.h
+
+1526422973 source:d:\usuarios\franco\downloads\lab1-master\lab1-master\clase 9\nueva carpeta\propietarios.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"propietarios.h"
+	<time.h>
+
+1526443459 source:d:\usuarios\franco\downloads\lab1-master\lab1-master\clase 9\nueva carpeta\autos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"autos.h"
+
+1526424054 d:\usuarios\franco\downloads\lab1-master\lab1-master\clase 9\nueva carpeta\autos.h
+	"propietarios.h"
+

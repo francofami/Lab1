@@ -41,6 +41,7 @@ int validarNumero(char numero[])
         if(!(isdigit(numero[i])))
         {
             retorno=0;
+            printf("Error! Ingrese solo numeros.\n");
             break;
         }
     }
@@ -109,6 +110,7 @@ int ePropietario_alta(ePropietario  listadoPropietarios[],int limite)
     int validar;
     char nombre[100];
 
+
     if(limite > 0 && listadoPropietarios != NULL)
     {
         retorno = -2;
@@ -126,7 +128,7 @@ int ePropietario_alta(ePropietario  listadoPropietarios[],int limite)
                 strcpy(nombre,listadoPropietarios[indice].nombreApellido);
                 validar=validarNombre(nombre);
                 if(validar==0)
-                    printf("Error, asegurese de ingresar solo letras.");
+                    printf("Error, asegurese de ingresar solo letras.\n");
             }while(validar==0);
 
             printf("Ingrese direccion: ");
@@ -152,10 +154,9 @@ int validarNombre(char nombre[])
     int i;
     for(i=0; i<strlen(nombre); i++)
     {
-        if(!(isalpha(nombre[i])))
+        if(!(isalpha(nombre[i])) && nombre[i]!=' ')
         {
             retorno=0;
-            printf("Error, ingrese solo caracteres. \n");
             break;
         }
     }
@@ -197,8 +198,6 @@ void ePropietario_modificacion(ePropietario listadoPropietarios[] ,int limite)
 
     if(indicePropietario>=0)
     {
-        ePropietario_mostrarUno(listadoPropietarios[indicePropietario]);
-
         printf("Esta seguro que desea modificar el numero de tarjeta de: \n");
         ePropietario_mostrarUno(listadoPropietarios[indicePropietario]);
         printf("1. Si\n2. No\n");

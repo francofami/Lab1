@@ -59,3 +59,26 @@
 1526424054 d:\usuarios\franco\downloads\lab1-master\lab1-master\clase 9\nueva carpeta\autos.h
 	"propietarios.h"
 
+1526522312 source:c:\users\franco\downloads\lab1-master (1)\lab1-master\parcial 1\propietarios.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"propietarios.h"
+	<time.h>
+
+1526430644 c:\users\franco\downloads\lab1-master (1)\lab1-master\parcial 1\propietarios.h
+
+1526521523 source:c:\users\franco\downloads\lab1-master (1)\lab1-master\parcial 1\main.c
+	<stdio.h>
+	<stdlib.h>
+	"autos.h"
+
+1526504497 c:\users\franco\downloads\lab1-master (1)\lab1-master\parcial 1\autos.h
+	"propietarios.h"
+
+1526524011 source:c:\users\franco\downloads\lab1-master (1)\lab1-master\parcial 1\autos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"autos.h"
+

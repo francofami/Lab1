@@ -50,28 +50,31 @@ void eAuto_ingreso(eAuto listadoAutos[],ePropietario listadoPropietarios[], int 
 {
     int idUsuario, indiceVacio, i, flag=0, idAutito;
 
-    ePropietario_mostrarListado(listadoPropietarios,largoPropietarios);
+        ePropietario_mostrarListado(listadoPropietarios,largoPropietarios);
 
-    printf("\nIngrese ID de propietario cuyo auto quiera ingresar: ");
-    scanf("%d",&idUsuario);
+        printf("\nIngrese ID de propietario cuyo auto quiera ingresar: ");
+        scanf("%d",&idUsuario);
 
-    for(i=0;i<largoPropietarios;i++)
-    {
-        if(idUsuario==listadoPropietarios[i].idPropietario)
+        for(i=0;i<largoPropietarios;i++)
         {
-            flag=1;
-            break;
+            if(idUsuario==listadoPropietarios[i].idPropietario)
+            {
+                flag=1;
+                break;
+            }
         }
-    }
 
-    indiceVacio=eAuto_buscarLugarLibre(listadoAutos,largoAutos);
+        indiceVacio=eAuto_buscarLugarLibre(listadoAutos,largoAutos);
+
 
         if(indiceVacio >= 0 && flag==1)
         {
             idAutito=eAuto_siguienteId(listadoAutos,largoAutos);
 
-            printf("\nIngrese marca del auto: ");
+            do{
+                printf("\nIngrese marca del auto (1. Alpha Romeo 2. Ferrari 3. Audi 4. Otros): ");
             scanf("%d",&listadoAutos[indiceVacio].marca);
+            }while(listadoAutos[indiceVacio].marca<=1 && listadoAutos[indiceVacio].marca>=4);
 
             printf("\nIngrese patente: ");
             fflush(stdin);
@@ -84,12 +87,12 @@ void eAuto_ingreso(eAuto listadoAutos[],ePropietario listadoPropietarios[], int 
 
         if(flag==0)
         {
-            printf("No existe dicho propietario.");
+            printf("No existe dicho propietario.\n");
         }
 
         if(indiceVacio<0)
         {
-            printf("No hay mas espacio.");
+            printf("No hay mas espacio.\n");
         }
 }
 
@@ -120,7 +123,7 @@ void eAuto_mostrarListado(eAuto listadoAutos[],int limite)
 {
     int i;
 
-        printf("ID Auto      ID Prop.       Marca                      Patente");
+        printf("ID Auto      ID Prop.       Marca                      Patente\n");
 
         for(i=0; i<limite; i++)
         {
@@ -152,7 +155,7 @@ int eAuto_buscarLugarLibre(eAuto listado[],int limite)
 
 void eAuto_egreso(eAuto listaAutos[],ePropietario listaPropietarios[],int largoAutos,int largoPropietarios)
 {
-    int id, indiceAuto, indicePropietario, horas,i, flag=0;
+    int id, indiceAuto, indicePropietario, horas,i, flag=0, flagOcupados, opcion;
     float importe, acumuladorAlpha=0, acumuladorFerrari=0, acumuladorAudi=0, acumuladorOtros=0;
     char marca[20];
 
@@ -164,14 +167,15 @@ void eAuto_egreso(eAuto listaAutos[],ePropietario listaPropietarios[],int largoA
 
             printf("Ingrese ID de auto que egresa: ");
             scanf("%d", &id);
+            flagOcupados=1;
             break;
         }
-        else
-        {
-            printf("No hay autos estacionados.\n");
-            flag=1;
-            break;
-        }
+    }
+
+    if(flagOcupados==0)
+    {
+        printf("No hay autos estacionados.\n");
+        flag=1;
     }
 
     if(flag!=1)
@@ -179,8 +183,10 @@ void eAuto_egreso(eAuto listaAutos[],ePropietario listaPropietarios[],int largoA
         indiceAuto=eAuto_buscarPorId(listaAutos,largoAutos,id);
         indicePropietario=ePropietario_buscarPorId(listaPropietarios,largoPropietarios,listaAutos[indiceAuto].idPropietario);
 
+        printf("Esta seguro que desea egresar el auto: \n1. Si  2. No\n");
+        scanf("%d", &opcion);
 
-    if(indiceAuto>=0)
+    if(indiceAuto>=0 && opcion==1)
     {
         horas=devolverHorasEstadia();
         if(listaAutos[indiceAuto].marca==1)
@@ -216,7 +222,12 @@ void eAuto_egreso(eAuto listaAutos[],ePropietario listaPropietarios[],int largoA
         printf("Nombre propietario: %s - Patente: %s - Marca: %s - Valor de estadia: %.2f\n", listaPropietarios[indicePropietario].nombreApellido, listaAutos[indiceAuto].patente, marca, importe);
     }
     else
+        {
+        if(opcion==1)
+
         printf("El ID ingresado no coincide con ningun auto estacionado.\n");
+    }
+
     }
 }
 
@@ -371,7 +382,7 @@ void eAuto_buscarPorIdPropietario(eAuto listadoAutos[], int largoAutos, ePropiet
         }
     }
     else
-        printf("El propietario ingresado no existe.");
+        printf("El propietario ingresado no existe.\n");
 }
 
 void eAuto_datosAudi(eAuto listadoAutos[], int largoAutos, ePropietario listadoPropietarios[], int largoPropietarios)
@@ -397,30 +408,18 @@ void eAuto_datosAudi(eAuto listadoAutos[], int largoAutos, ePropietario listadoP
 
 void eAuto_estacionadosPorPatente(eAuto listadoAutos[], int largoAutos, ePropietario listadoPropietarios[], int largoPropietarios)
 {
-    int i,j,k, cantidadOcupados=0, cantProp=0, auxi, indicePropietario,idProp;
+    int i,j,k, ultimoOcupado, auxi, indicePropietario,idProp;
     char aux[50], marca[20], variableNombre[20][100], direccion[20][100];
 
     printf("Patente    ID Auto          Marca              ID Prop           Nombre prop.          Direccion \n");
 
-    for(i=0;i<largoAutos;i++)
-    {
-        if(listadoAutos[i].estado==OCUPADO)
-        {
-            cantidadOcupados+=1;
-        }
-    }
+    ultimoOcupado=eAuto_buscarLugarLibre(listadoAutos,largoAutos);
+    if(ultimoOcupado==-2)
+    ultimoOcupado=20;
 
-    for(i=0;i<largoPropietarios;i++)
+    for(i=0;i<ultimoOcupado-1;i++)
     {
-        if(listadoPropietarios[i].estado==OCUPADO)
-        {
-            cantProp+=1;
-        }
-    }
-
-    for(i=0;i<cantidadOcupados-1;i++)
-    {
-        for(j=i+1;j<cantidadOcupados;j++)
+        for(j=i+1;j<ultimoOcupado;j++)
         {
             if(stricmp(listadoAutos[j].patente,listadoAutos[i].patente)==-1)
             {
@@ -443,7 +442,7 @@ void eAuto_estacionadosPorPatente(eAuto listadoAutos[], int largoAutos, ePropiet
         }
     }
 
-    for(i=0;i<cantidadOcupados;i++)
+    for(i=0;i<ultimoOcupado;i++)
     {
         indicePropietario=ePropietario_buscarPorId(listadoPropietarios,largoPropietarios, listadoAutos[i].idPropietario);
         strcpy(variableNombre[i], listadoPropietarios[indicePropietario].nombreApellido);

@@ -39,6 +39,7 @@ int main()
         printf("14- Listar autos estacionados (ordenados por patente)\n");
         printf("15- Salir\n");
 
+        fflush(stdin);
         scanf("%d",&opcion);
 
         system("cls");
@@ -96,6 +97,8 @@ int main()
             case 15:
                 seguir = 'n';
                 break;
+            default:
+                printf("Error, ingrese un numero del 1 al 15.\n");
         }
     }
     return 0;

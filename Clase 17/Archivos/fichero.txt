@@ -1,0 +1,4 @@
+ffsdfsdfafdsf
+Otra forma de escribir
+Otra forma mas
+ Y el buffer contiene: ffsdfsdfafdsf

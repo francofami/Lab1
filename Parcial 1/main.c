@@ -38,6 +38,7 @@ int main()
         printf("13- Mostrar datos de propietarios de autos AUDI\n");
         printf("14- Listar autos estacionados (ordenados por patente)\n");
         printf("15- Salir\n");
+        printf("16- Pruebas\n");
 
         fflush(stdin);
         scanf("%d",&opcion);
@@ -96,6 +97,9 @@ int main()
                 break;
             case 15:
                 seguir = 'n';
+                break;
+            case 16:
+                listarPropietariosEstacionadosNombreDescendente(listaAutos, CANTIDADAUTOS, listaPropietarios, CANTIDADPROPIETARIOS);
                 break;
             default:
                 printf("Error, ingrese un numero del 1 al 15.\n");

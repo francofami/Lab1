@@ -186,10 +186,21 @@ int ePropietario_buscarPorId(ePropietario listadoPropietarios[] ,int limite, int
 
 void ePropietario_modificacion(ePropietario listadoPropietarios[] ,int limite)
 {
-    int id, indicePropietario=-1, validar, opcion;
+    int id, indicePropietario=-1, validar, opcion,i, flag=0;
     char tarjeta[20];
 
-    ePropietario_mostrarListado(listadoPropietarios,limite);
+    for(i=0;i<limite;i++)
+    {
+        if(listadoPropietarios[i].estado==OCUPADO)
+        {
+            flag=1;
+            break;
+        }
+    }
+
+    if(flag==1)
+    {
+      ePropietario_mostrarListado(listadoPropietarios,limite);
 
     printf("\nIngrese ID de usuario a modificar su numero de tarjeta: ");
     scanf("%d",&id);
@@ -213,15 +224,27 @@ void ePropietario_modificacion(ePropietario listadoPropietarios[] ,int limite)
     }
     else
         printf("El ID ingresado no coincide con ningun propietario.\n");
-
+    }
+    else
+        printf("No hay usuarios cargados para modificar.\n");
 }
 
 void ePropietario_baja(ePropietario listadoPropietarios[] ,int limite)
 {
-    int id, indicePropietario=-1, opcion,i;
+    int id, indicePropietario=-1, opcion,i,flag=0;
 
-    ePropietario_mostrarListado(listadoPropietarios,limite);
+    for(i=0;i<limite;i++)
+    {
+        if(listadoPropietarios[i].estado==OCUPADO)
+        {
+            flag=1;
+            break;
+        }
+    }
 
+    if(flag==1)
+    {
+      ePropietario_mostrarListado(listadoPropietarios,limite);
 
        printf("\nIngrese ID de usuario a dar de baja: ");
     fflush(stdin);
@@ -256,8 +279,9 @@ if(opcion==1)
     else
         printf("El ID ingresado no coincide con ningun propietario. \n");
 }
-
-
+    }
+    else
+        printf("No hay usuarios para dar de baja.\n");
 }
 
 void ePropietario_mostrarUno(ePropietario parametro)
@@ -292,3 +316,5 @@ int devolverHorasEstadia()
     return horas ;
 
 }
+
+

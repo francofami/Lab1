@@ -82,3 +82,72 @@
 	<string.h>
 	"autos.h"
 
+1527165592 source:d:\yo\recuperatoriolab1\autos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"autos.h"
+
+1526656673 d:\yo\recuperatoriolab1\autos.h
+	"propietarios.h"
+
+1526656673 d:\yo\recuperatoriolab1\propietarios.h
+
+1526656673 source:d:\yo\recuperatoriolab1\main.c
+	<stdio.h>
+	<stdlib.h>
+	"autos.h"
+
+1527165326 source:d:\yo\recuperatoriolab1\propietarios.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"propietarios.h"
+	<time.h>
+
+1527171222 source:d:\famiglietti\recuperatoriolab1lenguajec\recuperatoriolab1\autos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"autos.h"
+
+1527171222 d:\famiglietti\recuperatoriolab1lenguajec\recuperatoriolab1\autos.h
+	"propietarios.h"
+
+1527171222 d:\famiglietti\recuperatoriolab1lenguajec\recuperatoriolab1\propietarios.h
+
+1527171222 source:d:\famiglietti\recuperatoriolab1lenguajec\recuperatoriolab1\main.c
+	<stdio.h>
+	<stdlib.h>
+	"autos.h"
+
+1527171222 source:d:\famiglietti\recuperatoriolab1lenguajec\recuperatoriolab1\propietarios.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"propietarios.h"
+	<time.h>
+
+1527634473 source:c:\users\franco\desktop\recuperatoriolab1lenguajec-master\recuperatoriolab1\propietarios.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"propietarios.h"
+	<time.h>
+
+1527157306 c:\users\franco\desktop\recuperatoriolab1lenguajec-master\recuperatoriolab1\propietarios.h
+
+1527634801 source:c:\users\franco\desktop\recuperatoriolab1lenguajec-master\recuperatoriolab1\main.c
+	<stdio.h>
+	<stdlib.h>
+	"autos.h"
+
+1527157306 c:\users\franco\desktop\recuperatoriolab1lenguajec-master\recuperatoriolab1\autos.h
+	"propietarios.h"
+
+1527643882 source:c:\users\franco\desktop\recuperatoriolab1lenguajec-master\recuperatoriolab1\autos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"autos.h"
+

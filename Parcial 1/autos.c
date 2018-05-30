@@ -518,19 +518,34 @@ int eAuto_buscarPorId(eAuto listadoAutos[] ,int limite, int id)
 
 void listarPropietariosEstacionadosNombreDescendente(eAuto listadoAutos[], int largoAutos, ePropietario listadoPropietarios[], int largoPropietarios)
 {
-    int i,j,k, ultimoOcupado, auxi, indiceAuto,idAuto;
-    char aux[50], marca[20], variableNombre[20][100], patente[20][100];
+    int i,j,k, ultimoOcupado, auxi, indiceAuto,idAuto,idPropietario;
+    char aux[50], marca[20], variableNombre[20][100], patente[20][100], nombre[20][50];
     float importe;
 
     printf("Nombre     Direccion          ID Prop         Tarjeta           Marca          ID Auto       Importe \n");
 
-    ultimoOcupado=ePropietario_buscarLugarLibre(listadoPropietarios,largoPropietarios);
+    ultimoOcupado=eAuto_buscarLugarLibre(listadoAutos,largoAutos);
     if(ultimoOcupado==-2)
     ultimoOcupado=20;
 
-    for(i=0;i<ultimoOcupado-1;i++)
+    for(k=0;k<ultimoOcupado-1;k++)
     {
-        for(j=i+1;j<ultimoOcupado;j++)
+        if(listadoAutos[i].estado==OCUPADO)
+        {
+            for(l=0;l<ultimoOcupado-1;l++)
+            {
+                if(listadoAutos[i].idPropietario==listadoPropietarios[l].idPropietario)
+                {
+                    nombre[i]=listadoPropietarios[l].nombreApellido;
+                    //Copiate todos los datos de los propietarios a strings nuevos
+                    //EJ: direccion[i]=listadoPropietarios[l].dureccuib
+                    //Despues ordena estos strings que creaste ordenando tambien los datos de los autos
+                }
+            }
+
+        for(i=0;i<ultimoOcupado-2;i++)
+    {
+        for(j=i+1;j<ultimoOcupado-1;j++)
         {
             if(stricmp(listadoPropietarios[j].nombreApellido,listadoPropietarios[i].nombreApellido)==-1)
             {
@@ -551,6 +566,10 @@ void listarPropietariosEstacionadosNombreDescendente(eAuto listadoAutos[], int l
                 strcpy(listadoPropietarios[i].tarjetaCredito, aux);
             }
         }
+    }
+
+        }
+
     }
 
     for(i=0;i<ultimoOcupado;i++)

@@ -5,7 +5,6 @@ typedef struct{
     int id;
     char nombre[50];
 }ePersona;
-
 //Setters: setean, le dan un valor al campo de la estructura en este caso. Se usan solo para una persona. Para usar muchas hago un for.
 int ePersona_setId(ePersona* this,int id);
 int ePersona_setNombre(ePersona* this, char* nombre[]);
@@ -14,14 +13,19 @@ int ePersona_setNombre(ePersona* this, char* nombre[]);
 int ePersona_getID(ePersona*);
 char* ePersona_getNombre(ePersona*); //Si no pusiera * al final solo estaria refiriendome a un caracter.
 
+ePersona* newPersona();
+
 //Puedo tener setters y no getters y getters pero no setters.
 
 int main()
 {
     ePersona* pPersona;
+
+    pPersona = newPersona();
+
     //printf("%p\n",pPersona);//Apunta a basura
     //printf("%p\n",&pPersona);//Apunta a la direccion de memoria del puntero (dentro del stack).
-    pPersona = malloc(sizeof(ePersona)); //Recibe un tamaño y devuelve un puntero a void -> se la asigno al puntero
+    //pPersona = malloc(sizeof(ePersona)); //Recibe un tamaño y devuelve un puntero a void -> se la asigno al puntero
     //Le digo al heap que me reserve el tamaño que le pedi.
     //Malloc puede devolver la direccion de memoria del heap, si no hay mas memoria devuelve NULL
     //printf("%p\n",pPersona);//Apunta a la direccion del heap (montón).
@@ -93,4 +97,11 @@ char* ePersona_getNombre(ePersona* this)
     }
 
     return retorno;
+}
+
+ePersona* newPersona()
+{
+    ePersona* pAux;
+    pAux=(ePersona*)malloc(sizeof(ePersona));
+    return pAux;
 }

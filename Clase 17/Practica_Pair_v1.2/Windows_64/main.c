@@ -22,10 +22,14 @@ int main()
     Employee* e2;
     Employee* eAux;
     int intAux,i;
+    FILE* fp;
 
     lista=al_newArrayList();
 
-    e1=employee_new();
+    //Parsear archivo
+    parserEmployee(fp, lista);
+
+    /*e1=employee_new();
     e2=employee_new();
 
     e1->id=666;
@@ -39,13 +43,12 @@ int main()
     e2->isEmpty=1;
 
     al_add(lista,e1); //Debo pasar e1 al Arraylist
-    al_add(lista,e2);
+    al_add(lista,e2);*/
 
     intAux=al_len(lista);
     printf("Cant elementos: %d\n",intAux);
 
     al_sort(lista, employee_compare, 1);
-
 
     //Si quiero borrar a uno
     al_remove(lista,al_indexOf(lista, e1));

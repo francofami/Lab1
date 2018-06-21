@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1529584463 source:d:\yo\punteroafuncion\main.c
+	<stdio.h>
+	<stdlib.h>
+

@@ -70,6 +70,8 @@ void menu()
                         printf("Cliente a ser atendido: ");
                         atenderTramite(listaTramitesRegulares, atendidosRegulares);
                     }
+                    else
+                        printf("No hay clientes por atender.\n");
                 }
                 break;
             case 4:
@@ -116,7 +118,7 @@ void menu()
                     }
                     else
                     {
-                        printf("No se atendio a nadie.\n");
+                        printf("No se atendio a nadie (en estado urgente).\n");
                     }
 
                     length=atendidosRegulares->len(atendidosRegulares);
@@ -134,7 +136,7 @@ void menu()
                     }
                     else
                     {
-                        printf("No se atendio a nadie.\n");
+                        printf("No se atendio a nadie (en estado regular).\n");
                     }
                 }
                 break;

@@ -30,3 +30,27 @@
 
 1529673426 d:\yo\lab1-master\clase 17\tramite\tramite\menu.h
 
+1529679672 source:d:\yo\lab1-master\clase 17\defensa_tp_lab_i_2016_1\tramite\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1529583827 d:\yo\lab1-master\clase 17\defensa_tp_lab_i_2016_1\tramite\arraylist.h
+
+1529676122 source:d:\yo\lab1-master\clase 17\defensa_tp_lab_i_2016_1\tramite\main.c
+	<stdio.h>
+	<stdlib.h>
+	"tramite.h"
+	"arraylist.h"
+	"menu.h"
+
+1529679436 d:\yo\lab1-master\clase 17\defensa_tp_lab_i_2016_1\tramite\tramite.h
+	"ArrayList.h"
+
+1529673426 d:\yo\lab1-master\clase 17\defensa_tp_lab_i_2016_1\tramite\menu.h
+
+1529679436 source:d:\yo\lab1-master\clase 17\defensa_tp_lab_i_2016_1\tramite\tramite.c
+	<stdio.h>
+	"tramite.h"
+

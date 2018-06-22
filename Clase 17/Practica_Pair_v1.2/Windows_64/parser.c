@@ -6,33 +6,29 @@
 //Lee desde el archivo cada empleado y lo carga en el arraylist
 int parserEmployee(FILE* pFile , ArrayList* pArrayListEmployee)
 {
-    int retorno;
-    int r;
-    int a,b,c,d;
+    Employee* empleado;
+    int retorno=-1;
+    char id[4096];
+    char nombre[4096];
+    char apellido[4096];
+    char edad[4096];
+    char estado[4096];
 
-    pFile=fopen("data.csv", "r");
-
-    if(pFile == NULL)
+    if(pFile!=NULL)
     {
-        printf("El archivo no existe");
-        retorno= -1;
-    }
-    do
-    {
-        al_add(ArrayList* pList,void* pElement)
+        pFile=fopen("data.csv", "r");
 
-        r=fscanf(pFile,"%d,%s,%s,%d\n",&a,&b,&c,&d);
-
-
-        if(r==4)
+        do
         {
-           printf("Lei %d %s %s %d\n",a,b,c,d);
-        }
-        else
-        break;
-    }while(!feof(pFile));
+            fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",id,nombre,apellido,estado);
+            empleado = employee_newParametros(id, nombre, apellido, estado);
+            al_add(pArrayListEmployee, empleado);
+
+        }while(!feof(pFile));
 
     fclose(pFile);
+    retorno=0;
 
     return retorno;
+    }
 }

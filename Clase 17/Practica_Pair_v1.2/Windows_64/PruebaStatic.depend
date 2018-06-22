@@ -90,3 +90,53 @@
 	"ArrayList.h"
 	"Employee.h"
 
+1529246956 source:d:\usuarios\franco\downloads\lab1-master\clase 17\practica_pair_v1.2\windows_64\employee.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"Employee.h"
+
+1529245457 d:\usuarios\franco\downloads\lab1-master\clase 17\practica_pair_v1.2\windows_64\arraylist.h
+
+1529246880 d:\usuarios\franco\downloads\lab1-master\clase 17\practica_pair_v1.2\windows_64\employee.h
+
+1529287074 source:d:\usuarios\franco\downloads\lab1-master\clase 17\practica_pair_v1.2\windows_64\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"Employee.h"
+	"parser.h"
+
+1529246756 d:\usuarios\franco\downloads\lab1-master\clase 17\practica_pair_v1.2\windows_64\parser.h
+
+1529330342 source:d:\usuarios\franco\downloads\lab1-master\clase 17\practica_pair_v1.2\windows_64\parser.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"Employee.h"
+
+1529363275 source:c:\users\franco\desktop\nueva carpeta (2)\practica_pair_v1.2\windows_64\employee.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"Employee.h"
+
+1529245457 c:\users\franco\desktop\nueva carpeta (2)\practica_pair_v1.2\windows_64\arraylist.h
+
+1529332061 c:\users\franco\desktop\nueva carpeta (2)\practica_pair_v1.2\windows_64\employee.h
+
+1529363258 source:c:\users\franco\desktop\nueva carpeta (2)\practica_pair_v1.2\windows_64\parser.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"Employee.h"
+
+1529332061 source:c:\users\franco\desktop\nueva carpeta (2)\practica_pair_v1.2\windows_64\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"Employee.h"
+	"parser.h"
+
+1529246756 c:\users\franco\desktop\nueva carpeta (2)\practica_pair_v1.2\windows_64\parser.h
+

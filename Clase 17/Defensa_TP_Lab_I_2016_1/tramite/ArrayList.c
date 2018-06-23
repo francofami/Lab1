@@ -98,11 +98,6 @@ int al_deleteArrayList(ArrayList* this)
 
     if(this!=NULL)
     {
-        for(i=0;i<this->len(this);i++)
-        {
-            al_remove(this,i);
-        }
-
         free(this);
         retorno=0;
     }
@@ -141,7 +136,6 @@ void* al_get(ArrayList* this, int index)
     if(this!=NULL && index>=0 && index<this->len(this))
     {
        returnAux = *(this->pElements+index);
-
     }
 
     return returnAux;
@@ -379,7 +373,7 @@ void* al_pop(ArrayList* this,int index)
 
     if(this!=NULL && index>=0 && index<this->len(this))
     {
-        returnAux = this->pElements[index];
+        returnAux = *(this->pElements+index);
         contract(this,index);
     }
 
@@ -576,8 +570,8 @@ int contract(ArrayList* this,int index)
 
     if(this != NULL && index >= 0 && index < this->size)
     {
-        for(i=index;i<this->size;i++){
-            this->pElements[i] = this->pElements[i+1];
+        for(i=index;i<this->len(this);i++){
+            *(this->pElements+i) = *(this->pElements+i+1);
             returnAux = 0;
         }
         this->size--;
@@ -585,31 +579,36 @@ int contract(ArrayList* this,int index)
     return returnAux;
 }
 
-int resizeDown(ArrayList* pList, int index)
+int resizeDown(ArrayList* this, int index)
 {
-    int retorno = -1;
+    int returnAux = -1;
     void* pAux;
     int i;
-    if(pList != NULL){
-        //DOGE WATCH HERE
-        //printf("\nel size es: %d\ny el reservedSize es: %d", pList->size, pList->reservedSize);
-        if(pList->size < pList->reservedSize){
-            pAux = realloc(pList->pElements, sizeof(void*) * pList->reservedSize);
-            if(pAux != NULL){
-                for(i=pList->size; i>=index; i--){
-                    pList->pElements[i] = pList->pElements[i-1];
+
+    if(pList != NULL)
+    {
+        if(this->len(this) < this->reservedSize)
+        {
+            pAux = realloc(this->pElements, sizeof(void*) * this->reservedSize);
+
+            if(pAux != NULL)
+            {
+                for(i=this->al(this); i>=index; i--)
+                {
+                    *(this->pElements+i) = *(this->pElements+i-1);
                 }
-                pList->pElements = pAux;
-                pList->size = al_len(pList);
-                pList->size--;
-                //printf("\nel size actual es: %d", pList->size);
-                //system("pause");
-                //pList->reservedSize = pList->size;
-                retorno = 0;
+
+                this->pElements = pAux;
+                this->size = al_len(pList);
+                this->size--;
+
+                returnAux = 0;
             }
         }
-        retorno = 0;
+
+        returnAux = 0;
 
     }
-    return retorno;
+
+    return returnAux;
 }

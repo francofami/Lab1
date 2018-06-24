@@ -71,7 +71,6 @@ ArrayList* al_newArrayList(void)
 int al_add(ArrayList* this,void* pElement)
 {
     int returnAux=-1;
-    void** aux;
 
     if(this!=NULL && pElement!=NULL)
     {
@@ -94,7 +93,7 @@ int al_add(ArrayList* this,void* pElement)
  */
 int al_deleteArrayList(ArrayList* this)
 {
-    int retorno=-1,i;
+    int retorno=-1;
 
     if(this!=NULL)
     {
@@ -205,14 +204,15 @@ int al_set(ArrayList* this, int index,void* pElement)
  */
 int al_remove(ArrayList* this,int index)
 {
-    int returnAux=-1;
-
-    if(this!=NULL && index>=0 && index<this->len(this))
+    int returnAux = -1;
+    if(this != NULL)
     {
-        returnAux = resizeDown(this, index);
-        returnAux=0;
+        returnAux = contract(this, index);
+        if(returnAux == 0)
+        {
+            this->size--;
+        }
     }
-
     return returnAux;
 }
 
@@ -566,15 +566,18 @@ int expand(ArrayList* this,int index)
  */
 int contract(ArrayList* this,int index)
 {
-    int returnAux = -1,i;
-
-    if(this != NULL && index >= 0 && index < this->size)
+    int i;
+    int returnAux = -1;
+    if(this != NULL)
     {
-        for(i=index;i<this->len(this);i++){
-            *(this->pElements+i) = *(this->pElements+i+1);
+        if(index >= 0 && index <= this->size)
+        {
+            for(i=index; i<=this->size; i++)
+            {
+                *(this->pElements+i) = *(this->pElements+(i+1));
+            }
             returnAux = 0;
         }
-        this->size--;
     }
     return returnAux;
 }
@@ -582,33 +585,13 @@ int contract(ArrayList* this,int index)
 int resizeDown(ArrayList* this, int index)
 {
     int returnAux = -1;
-    void* pAux;
-    int i;
-
-    if(this != NULL)
+    void** aux;
+    aux = (void**) realloc(this->pElements, sizeof(void*)*AL_INITIAL_VALUE);
+    if(aux!=NULL)
     {
-        if(this->len(this) < this->reservedSize)
-        {
-            pAux = realloc(this->pElements, sizeof(void*) * this->reservedSize);
-
-            if(pAux != NULL)
-            {
-                for(i=this->len(this); i>=index; i--)
-                {
-                    *(this->pElements+i) = *(this->pElements+i-1);
-                }
-
-                this->pElements = pAux;
-                this->size = al_len(this);
-                this->size--;
-
-                returnAux = 0;
-            }
-        }
-
+        this->pElements = aux;
+        this->reservedSize=AL_INITIAL_VALUE;
         returnAux = 0;
-
     }
-
     return returnAux;
 }

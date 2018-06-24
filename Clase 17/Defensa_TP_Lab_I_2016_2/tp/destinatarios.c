@@ -132,18 +132,26 @@ int destinatarios_getMail(destinatarios* this)
 
 int destinatarios_compareMail(void* pdestinatariosA, void* pdestinatariosB)
 {
-    char* maild1[50];
-    char* maild2[50];
+    destinatarios* m1;
+    destinatarios* m2;
+
+    m1 = (destinatarios*) pdestinatariosA;
+    m2 = (destinatarios*) pdestinatariosB;
+
+    //char* maild1[50];
+    //char* maild2[50];
 
     int retorno = 0;
 
-    if(pdestinatariosA!=NULL && pdestinatariosB != NULL)
+    /*if(pdestinatariosA!=NULL && pdestinatariosB != NULL)
     {
         strcpy(maild1,destinatarios_getMail(pdestinatariosA));
         strcpy(maild2,destinatarios_getMail(pdestinatariosB));
 
         retorno = stricmp(maild1,maild2);
-    }
+    }*/
+
+    retorno= stricmp(m1->mail, m2->mail);
 
     return retorno ;
 }

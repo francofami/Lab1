@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "ArrayList.h"
+#include "arrayList.h"
 #include "destinatarios.h"
 
 destinatarios* destinatarios_new(void)
@@ -16,7 +16,7 @@ destinatarios* destinatarios_newParametros(char* name, char* mail, int id, int i
 
     this = destinatarios_new();
 
-     if(!destinatarios_setId(this,id)
+     if(!destinatarios_setId(this,id) &&
         !destinatarios_setName(this,name) &&
         !destinatarios_setMail(this,mail) &&
         !destinatarios_setIsEmpty(this,isEmpty)
@@ -48,44 +48,41 @@ int destinatarios_setIsEmpty(destinatarios* this, int isEmpty)
     return retorno;
 }
 
-int destinatarios_getIsEmpty(destinatarios* this, int* isEmpty)
+int destinatarios_getIsEmpty(destinatarios* this)
 {
-    int retorno = -1;
-    if(this != NULL && isEmpty != NULL)
+    int retorno=-1;
+
+    if(this!=NULL)
     {
-        retorno = 0;
-        *isEmpty = this->isEmpty;
+        retorno=this->isEmpty;
     }
+
     return retorno;
 }
 
 int destinatarios_setId(destinatarios* this, int id)
 {
-    static int ultimoId = -1;
-    int retorno = -1;
-    if(this != NULL && id == -1)
+    int retorno=-1;
+
+    if(this!=NULL && id>0)
     {
-        retorno = 0;
-        ultimoId++;
-        this->id = ultimoId;
+        retorno=0;
+
+        this->id = id;
     }
-    else if(this != NULL && id > ultimoId)
-    {
-        retorno = 0;
-        ultimoId = id;
-        this->id = ultimoId;
-    }
+
     return retorno;
 }
 
-int destinatarios_getId(destinatarios* this, int* id)
+int destinatarios_getId(destinatarios* this)
 {
-    int retorno = -1;
-    if(this != NULL && id != NULL)
+    int retorno=-1;
+
+    if(this!=NULL)
     {
-        retorno = 0;
-        *id = this->id;
+        retorno=this->id;
     }
+
     return retorno;
 }
 
@@ -100,14 +97,15 @@ int destinatarios_setName(destinatarios* this, char* name)
     return retorno;
 }
 
-int destinatarios_getName(destinatarios* this, char* name)
+int destinatarios_getName(destinatarios* this)
 {
     int retorno = -1;
-    if(this != NULL && name != NULL)
+
+    if(this != NULL)
     {
-        retorno = 0;
-        strcpy(name,this->name);
+        retorno = this->name;
     }
+
     return retorno;
 }
 
@@ -122,53 +120,48 @@ int destinatarios_setMail(destinatarios* this, char* mail)
     return retorno;
 }
 
-int destinatarios_getMail(destinatarios* this, char* mail)
+int destinatarios_getMail(destinatarios* this)
 {
     int retorno = -1;
-    if(this != NULL && mail != NULL)
+    if(this != NULL)
     {
-        retorno = 0;
-        strcpy(mail,this->mail);
+        retorno=this->mail;
     }
     return retorno;
 }
 
-int destinatarios_compare(void* pdestinatariosA,void* pdestinatariosB)
+int destinatarios_compareMail(void* pdestinatariosA, void* pdestinatariosB)
 {
-    char* mailA;
-    char* mailB;
+    char* maild1[50];
+    char* maild2[50];
+
     int retorno = 0;
+
     if(pdestinatariosA!=NULL && pdestinatariosB != NULL)
     {
-        destinatarios_getMail(pdestinatariosA,&mailA);
-        destinatarios_getMail(pdestinatariosB,&mailB);
-        if(strcmp(mailA,mailB)==1)
-        {
-            retorno = 1;
-        }
-        else if(strcmp(mailA,mailB)==-1)
-        {
-            retorno = -1;
-        }
+        strcpy(maild1,destinatarios_getMail(pdestinatariosA));
+        strcpy(maild2,destinatarios_getMail(pdestinatariosB));
 
+        retorno = stricmp(maild1,maild2);
     }
-    return retorno;
 
+    return retorno ;
 }
 
 
 void destinatarios_print(destinatarios* this)
 {
-    char name[51];
-    char mail[51];
+    char name[50];
+    char mail[50];
     int isEmpty;
 
     if(this != NULL)
     {
-        destinatarios_getName(this,name);
-        destinatarios_getMail(this,mail);
-        destinatarios_getIsEmpty(this,&isEmpty);
-        fprintf(stdout,"\nNombre: %s - Apellido: %s - IsEmpty: %d", name,mail,isEmpty);
+        strcpy(name,destinatarios_getName(this));
+        strcpy(mail,destinatarios_getMail(this));
+        isEmpty=destinatarios_getIsEmpty(this);
+
+        printf("\nNombre: %s - Apellido: %s - IsEmpty: %d", name,mail,isEmpty);
     }
 
 }

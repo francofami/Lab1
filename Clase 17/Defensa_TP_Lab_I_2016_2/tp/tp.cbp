@@ -31,9 +31,21 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="arraylist.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="arraylist.h" />
+		<Unit filename="destinatarios.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="destinatarios.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="parser.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="parser.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -1,0 +1,35 @@
+# depslib dependency file v1.0
+1530195759 source:d:\famiglietti\famiglietti\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"funciones.h"
+	"empleados.h"
+
+1530189352 d:\famiglietti\famiglietti\arraylist.h
+
+1530189824 source:d:\famiglietti\famiglietti\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1530195669 source:d:\famiglietti\famiglietti\empleados.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+	"empleados.h"
+
+1530195642 d:\famiglietti\famiglietti\empleados.h
+
+1530195768 source:d:\famiglietti\famiglietti\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+	"funciones.h"
+	"empleados.h"
+
+1530195730 d:\famiglietti\famiglietti\funciones.h
+

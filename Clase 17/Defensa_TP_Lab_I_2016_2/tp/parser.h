@@ -3,8 +3,8 @@
 #include "ArrayList.h"
 #include "destinatarios.h"
 
-parserEmployee(FILE* pFile , ArrayList* this);
-int parserBlackList(FILE* pFile , ArrayList* this);
+int parserEmployee(FILE* pFile, ArrayList* this);
+int parserBlackList(FILE* pFile, ArrayList* this, ArrayList* pList);
 
 
 #endif // PARSER_H_INCLUDED

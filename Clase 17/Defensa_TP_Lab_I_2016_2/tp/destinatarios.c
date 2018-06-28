@@ -167,9 +167,8 @@ void destinatarios_print(destinatarios* this)
     {
         strcpy(name,destinatarios_getName(this));
         strcpy(mail,destinatarios_getMail(this));
-        isEmpty=destinatarios_getIsEmpty(this);
 
-        printf("\nNombre: %s - Apellido: %s - IsEmpty: %d", name,mail,isEmpty);
+        printf("\nNombre: %s - Mail: %s", name,mail);
     }
 
 }

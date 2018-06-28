@@ -6,13 +6,11 @@
 
 int main()
 {
-    int i, j, length, length2,flag=0;
+    int i, j, length, length2, contador=0;
 
     ArrayList* pList;
     ArrayList* blackList;
     ArrayList* listaFinal;
-
-    destinatarios* actual;
 
     FILE* pFile;
     FILE* pFile2;
@@ -22,44 +20,53 @@ int main()
     listaFinal=al_newArrayList();
 
     parserDestinatarios(pFile,pList);
-    parserDestinatarios(pFile2,blackList);
+    parserBlackList(pFile2,blackList,pList);
 
-    printf("Antes de eliminar:\n");
+    /*printf("Antes de eliminar:\n");
 
     for(i=0;i<=pList->len(pList);i++)
     {
         destinatarios_print(al_get(pList,i));
-    }
+    }*/
 
-    if(pList!=NULL && blackList!=NULL)
+    length=pList->size;
+
+    length2=blackList->size;
+
+    /*if(pList!=NULL && blackList!=NULL)
     {
-        for(i=0; i<pList->size; i++)
+        for(i=0;i<pList->size;i++)
         {
-            for(j=0;j<blackList->size; j++)
+            if(al_contains(blackList,pList->get(pList,i))==1)
             {
-                if(!(destinatarios_compareMail(*(pList->pElements+i),*(blackList->pElements+j))))
-                {
-                    flag=1;
-                }
+                al_remove(pList,i);
             }
-
-            if(flag==0)
-            {
-                actual = destinatarios_newParametros(destinatarios_getName(pList), destinatarios_getMail(pList), destinatarios_getId(pList), destinatarios_getIsEmpty(pList));
-                al_add(listaFinal, actual);
-            }
-
-            flag=0;
         }
+    }*/
 
+    destinatarios* auxDestinatarios;
+    destinatarios* auxBlackList;
+
+    for(i=0;i<length;i++)
+    {
+        auxBlackList = (destinatarios*) blackList->get(blackList, i);
+        auxDestinatarios = (destinatarios*) pList->get(pList, i);
+
+        if((blackList->contains(blackList, auxDestinatarios))==0)
+        {
+            listaFinal->add(listaFinal, auxDestinatarios);
+        }
     }
+
 
     printf("\n\n\n\nDespues:\n");
+
     for(i=0;i<=listaFinal->len(listaFinal);i++)
     {
         destinatarios_print(al_get(listaFinal,i));
     }
 
+    printf("\n\nContador: %d",contador);
 
     return 0;
 }

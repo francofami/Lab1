@@ -10,12 +10,17 @@ int parserEmpleados(FILE* pFile, ArrayList* this)
     int retorno = -1;
 
     char nombre[51];
-    char id[50];
+    int id;
     char sueldo[50];
     char profesion[50];
-    char edad[50];
+    int edad;
+    char nomArchivo[50];
 
     empleados* auxEmpleados;
+
+    //printf("Ingrese nombre del archivo a abrir: ");
+    //fflush(stdin);
+    //gets(nomArchivo);
 
     pFile = fopen("data.csv", "r");
 
@@ -23,103 +28,69 @@ int parserEmpleados(FILE* pFile, ArrayList* this)
     {
         retorno = 0;
 
+        printf("\nId\tNombre\t\tSueldo\t\tEdad\tProfesion\n");
+
         do
         {
             auxEmpleados = (empleados*) malloc(sizeof(empleados));
-            fscanf(pFile,"%[^,],%[^,],%[^,],%[^,],%[^\n]\n",id, nombre, sueldo, edad, profesion);
-            auxEmpleados = empleados_newParametros(id,nombre, sueldo, edad, profesion);
-            this->add(this,auxEmpleados);
-            empleados_print(auxEmpleados);
+
+            if(fscanf(pFile,"%d,%[^,],%[^,],%d,%[^\n]\n",&id, nombre, sueldo, &edad, profesion)==5)
+            {
+                auxEmpleados = empleados_newParametros(id,nombre, sueldo, edad, profesion);
+                this->add(this,auxEmpleados);
+                empleados_print(auxEmpleados);
+            }
         }while(!feof(pFile));
 
     }
 
-
-
-
     fclose(pFile);
-
-
 
     return retorno;
 }
 
 
-/*int crearArchivo(ArrayList* pList)
+int crearArchivo(FILE* pFile, ArrayList* this)
 {
     empleados* empleadoAux;
 
-    int i;
-    char nombre[][15]= {"Ariel","Angel","Alberto","Carlos","Jorge","Daniela","Lucia"};
-    int id=0;
-    float sueldo[]= {10000,20000,30000,40000,50000,60000,70000};
-    char profesion[][15]= {"tester","analista","programador","tester","programador","analista","analista"};
-    int edad[]= {20,30,25,24,28,40,50};
+    int i, length;
     int retorno=-1;
 
-    FILE *fp;
+    pFile = fopen("out.csv", "w");
 
-    fp = fopen("data.csv", "w");
-
-    if(fp!=NULL)
+    if(pFile!=NULL)
     {
+        length=this->len(this);
         retorno=0;
 
-        for(i=0;i<7;i++)
+        int id;
+        char nombre[50];
+        char sueldo[50];
+        char profesion[50];
+        int edad;
+
+        for(i=0;i<length;i++)
         {
-            id++;
-            fprintf(fp, "%d,%s,%f,%s,%d\n", id, nombre[i], sueldo[i], profesion[i], edad[i]);
+            empleadoAux= (empleados*) this->get(this, i);
 
-            empleadoAux = (empleados*) pList->get(pList, i);
+            id=empleados_getId(empleadoAux);
+            strcpy(nombre, empleados_getNombre(empleadoAux));
+            strcpy(sueldo, empleados_getSueldo(empleadoAux));
+            strcpy(profesion, empleados_getProfesion(empleadoAux));
+            edad=empleados_getEdad(empleadoAux);
 
-            retorno = pList->add(pList, empleadoAux);
+            fprintf(pFile, "%d,%s,%s,%d,%s\n", id, nombre, sueldo, edad, profesion);
+
+            printf("Archivo generado con exito.");
         }
-
-
     }
     else
     {
         printf("No se pudo escribir el archivo.");
     }
 
-
-    fclose(fp);
-
-    return retorno;
-}*/
-
-
-
-/*ArrayList* crearLista(FILE* pFile)
-{
-    int retorno = -1;
-
-    int id[8];
-    char nombre[51];
-    char sueldo[8];
-    int edad[8];
-    char profesion[15];
-
-    ArrayList* lista=NULL;
-    empleados* auxEmpleados;
-
-    pFile = fopen("data.csv", "r");
-
-    if(pFile != NULL)
-    {
-        retorno = 0;
-
-        do
-        {
-            auxEmpleados = (empleados*) malloc(sizeof(empleados));
-            fscanf(pFile,"%[^,],%[^,],%[^,],%[^,],%[^\n]\n",id, nombre,sueldo, edad, profesion);
-            auxEmpleados = empleados_newParametros(id, nombre,sueldo, edad, profesion);
-            lista->add(lista,auxEmpleados);
-        }while(!feof(pFile));
-
-    }
-
     fclose(pFile);
 
-    return lista;
-}*/
+    return retorno;
+}

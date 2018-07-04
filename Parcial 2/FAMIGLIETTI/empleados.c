@@ -10,7 +10,7 @@ empleados* empleados_new(void)
     return returnAux;
 }
 
-empleados* empleados_newParametros(char* id, char* nombre, char* sueldo, char* edad, char* profesion)
+empleados* empleados_newParametros(int id, char* nombre, char* sueldo, int edad, char* profesion)
 {
     empleados* this;
 
@@ -34,10 +34,10 @@ empleados* empleados_newParametros(char* id, char* nombre, char* sueldo, char* e
 void empleados_delete(empleados* this)
 {
     if(this != NULL)
-        free(this);
+    free(this);
 }
 
-int empleados_setId(empleados* this, char* id)
+int empleados_setId(empleados* this, int id)
 {
     int retorno=-1;
 
@@ -45,7 +45,7 @@ int empleados_setId(empleados* this, char* id)
     {
         retorno=0;
 
-        strcpy(this->id,id);
+        this->id=id;
     }
 
     return retorno;
@@ -90,7 +90,7 @@ int empleados_setSueldo(empleados* this, char* sueldo)
 {
     int retorno=-1;
 
-    if(this!=NULL)
+    if(this!=NULL && sueldo!=null)
     {
         retorno=0;
         strcpy(this->sueldo,sueldo);
@@ -111,15 +111,15 @@ int empleados_getSueldo(empleados* this)
     return retorno;
 }
 
-int empleados_setEdad(empleados* this, char* edad)
+int empleados_setEdad(empleados* this, int edad)
 {
     int retorno=-1;
 
-    if(this!=NULL)
+    if(this!=NULL && edad>=0)
     {
         retorno=0;
 
-        strcpy(this->edad,edad);
+        this->edad=edad;
     }
 
     return retorno;
@@ -162,22 +162,58 @@ int empleados_getProfesion(empleados* this)
 
 void empleados_print(empleados* this)
 {
-    char id[50];
+    int id;
     char nombre[51];
     char sueldo[50];
-    int edad[50];
+    int edad;
     char profesion[50];
 
     if(this != NULL)
     {
 
-        strcpy(id,empleados_getId(this));
+        id=empleados_getId(this);
         strcpy(nombre,empleados_getNombre(this));
         strcpy(sueldo,empleados_getSueldo(this));
-        strcpy(edad,empleados_getEdad(this));
+        edad=empleados_getEdad(this);
         strcpy(profesion,empleados_getProfesion(this));
 
-        printf("\nId: %s - Nombre: %s - Sueldo: %s - Edad: %s - Profesion: %s\n", id,nombre, sueldo, profesion, edad);
+        printf("%d\t%s\t\t%s\t\t%d\t%s\n", id,nombre, sueldo, edad, profesion);
     }
 
+}
+
+void empleados_printAll(ArrayList* this)
+{
+    int i;
+    int length;
+    empleados* aux;
+
+    length=this->len(this);
+
+    printf("\nID\tNombre\t\tSueldo\t\tEdad\tProfesion\n");
+
+    for(i=0;i<length;i++)
+    {
+        aux=this->get(this,i);
+
+        if(aux!=NULL)
+        {
+            empleados_print(aux);
+        }
+    }
+}
+
+int funcionQueFiltra(void* item)
+{
+    int retorno=0;
+
+    empleados* aux;
+    aux = (empleados*) item;
+
+    if(stricmp(empleados_getProfesion(aux),"Programador")==0 && empleados_getEdad(aux)>30)
+    {
+        retorno=1;
+    }
+
+    return retorno;
 }

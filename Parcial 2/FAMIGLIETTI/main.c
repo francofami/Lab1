@@ -11,16 +11,20 @@ int main()
     int opcion=0,i;
 
     ArrayList* pList;
-    empleados* aux;
+    ArrayList* listaFiltrada;
 
     pList=al_newArrayList();
 
     while(seguir=='s')
     {
-        printf("1- Levantar archivo y crear lista\n");
-        printf("2- Salir\n");
+        printf("\n1- Levantar archivo y crear lista\n");
+        printf("2- Obtener lista filtrada (Programadores con edad mayor a 30)\n");
+        printf("3- Generar archivo con lista filtrada\n");
+        printf("4- Salir\n");
 
         scanf("%d",&opcion);
+
+        system("cls");
 
         switch(opcion)
         {
@@ -31,7 +35,14 @@ int main()
                 break;
             case 2:
                 {
-                    seguir='n';
+                    listaFiltrada=al_filter(pList,funcionQueFiltra);
+
+                    empleados_printAll(listaFiltrada);
+                }
+                break;
+             case 3:
+                {
+                    crearArchivo(fp, listaFiltrada);
                 }
                 break;
             default:

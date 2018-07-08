@@ -205,14 +205,8 @@ int al_set(ArrayList* this, int index,void* pElement)
  */
 int al_remove(ArrayList* this,int index)
 {
-    int returnAux=-1;
-
-    if(this!=NULL && index>=0 && index<this->len(this))
-    {
-        returnAux = resizeDown(this, index);
-        returnAux=0;
-    }
-
+    int returnAux = -1;
+    returnAux = contract(this, index);
     return returnAux;
 }
 
@@ -301,13 +295,11 @@ int al_push(ArrayList* this, int index, void* pElement)
     {
             if(!resizeUp(this));
             {
-                for(i=index;i<this->len(this);i++)
-                {
-                    *(this->pElements+i+1)=*(this->pElements+i);
-                }
-
-                *(this->pElements+index)=pElement;
-                this->size++;
+                for(i=this->size; i>index; i--){
+            this->pElements[i] = this->pElements[i-1];
+        }
+        this->pElements[index] = pElement;
+        this->size++;
 
                 returnAux=0;
             }

@@ -1,0 +1,52 @@
+# depslib dependency file v1.0
+1530998140 source:c:\users\franco\desktop\nueva carpeta (2)\productos\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1530181638 c:\users\franco\desktop\nueva carpeta (2)\productos\arraylist.h
+
+1530988768 source:c:\users\franco\desktop\nueva carpeta (2)\productos\main.c
+	<stdio.h>
+	<stdlib.h>
+	"menu.h"
+
+1530988256 c:\users\franco\desktop\nueva carpeta (2)\productos\menu.h
+
+1530997581 source:c:\users\franco\desktop\nueva carpeta (2)\productos\menu.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"menu.h"
+	"funciones.h"
+
+1531012302 source:c:\users\franco\desktop\nueva carpeta (2)\productos\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+	"ArrayList.h"
+	"productos.h"
+	"validaciones.h"
+
+1531009212 c:\users\franco\desktop\nueva carpeta (2)\productos\funciones.h
+	"ArrayList.h"
+
+1530988386 c:\users\franco\desktop\nueva carpeta (2)\productos\productos.h
+
+1531008976 source:c:\users\franco\desktop\nueva carpeta (2)\productos\productos.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+	"ArrayList.h"
+	"productos.h"
+
+1530181638 source:c:\users\franco\desktop\nueva carpeta (2)\productos\validaciones.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"VALIDACIONES.h"
+
+1530181638 c:\users\franco\desktop\nueva carpeta (2)\productos\validaciones.h
+

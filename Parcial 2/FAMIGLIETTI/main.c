@@ -30,7 +30,11 @@ int main()
         {
             case 1:
                 {
-                    parserEmpleados(fp,pList);
+                    if(parserEmpleados(fp,pList)==-1)
+                    {
+                        printf("Error.");
+                    }
+
                 }
                 break;
             case 2:
@@ -42,7 +46,10 @@ int main()
                 break;
              case 3:
                 {
-                    crearArchivo(fp, listaFiltrada);
+                    if(crearArchivo(fp, listaFiltrada)==-1)
+                    {
+                        printf("Error.");
+                    }
                 }
                 break;
             default:

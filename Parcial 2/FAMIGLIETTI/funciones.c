@@ -81,13 +81,9 @@ int crearArchivo(FILE* pFile, ArrayList* this)
             edad=empleados_getEdad(empleadoAux);
 
             fprintf(pFile, "%d,%s,%s,%d,%s\n", id, nombre, sueldo, edad, profesion);
-
-            printf("Archivo generado con exito.");
         }
-    }
-    else
-    {
-        printf("No se pudo escribir el archivo.");
+
+        printf("Archivo generado con exito.\n");
     }
 
     fclose(pFile);

@@ -33,24 +33,24 @@
 
 1530195730 d:\famiglietti\famiglietti\funciones.h
 
-1530181638 source:d:\usuarios\franco\downloads\lab1-master\parcial 2\famiglietti\arraylist.c
+1531077504 source:d:\usuarios\franco\downloads\lab1-master\parcial 2\famiglietti\arraylist.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"ArrayList.h"
 
-1530181638 d:\usuarios\franco\downloads\lab1-master\parcial 2\famiglietti\arraylist.h
+1531077504 d:\usuarios\franco\downloads\lab1-master\parcial 2\famiglietti\arraylist.h
 
-1530566015 source:d:\usuarios\franco\downloads\lab1-master\parcial 2\famiglietti\empleados.c
+1531077504 source:d:\usuarios\franco\downloads\lab1-master\parcial 2\famiglietti\empleados.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"ArrayList.h"
 	"empleados.h"
 
-1530640054 d:\usuarios\franco\downloads\lab1-master\parcial 2\famiglietti\empleados.h
+1531077504 d:\usuarios\franco\downloads\lab1-master\parcial 2\famiglietti\empleados.h
 
-1530566647 source:d:\usuarios\franco\downloads\lab1-master\parcial 2\famiglietti\funciones.c
+1531254518 source:d:\usuarios\franco\downloads\lab1-master\parcial 2\famiglietti\funciones.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -58,12 +58,21 @@
 	"funciones.h"
 	"empleados.h"
 
-1530566104 d:\usuarios\franco\downloads\lab1-master\parcial 2\famiglietti\funciones.h
+1531254146 d:\usuarios\franco\downloads\lab1-master\parcial 2\famiglietti\funciones.h
 
-1530566104 source:d:\usuarios\franco\downloads\lab1-master\parcial 2\famiglietti\main.c
+1531254146 source:d:\usuarios\franco\downloads\lab1-master\parcial 2\famiglietti\main.c
 	<stdio.h>
 	<stdlib.h>
 	"ArrayList.h"
 	"funciones.h"
 	"empleados.h"
+
+1531077504 source:d:\usuarios\franco\downloads\lab1-master\parcial 2\famiglietti\validaciones.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"VALIDACIONES.h"
+
+1531077504 d:\usuarios\franco\downloads\lab1-master\parcial 2\famiglietti\validaciones.h
 

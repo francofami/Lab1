@@ -1,0 +1,44 @@
+# depslib dependency file v1.0
+1531315415 source:d:\famiglietti\famiglietti\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1531310347 d:\famiglietti\famiglietti\arraylist.h
+
+1531318294 source:d:\famiglietti\famiglietti\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+	"funciones.h"
+	"numeroNatural.h"
+
+1531315415 d:\famiglietti\famiglietti\funciones.h
+
+1531316668 d:\famiglietti\famiglietti\numeronatural.h
+
+1531316929 source:d:\famiglietti\famiglietti\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"funciones.h"
+	"numeroNatural.h"
+
+1531317476 source:d:\famiglietti\famiglietti\numeronatural.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+	"numeroNatural.h"
+
+1531310348 source:d:\famiglietti\famiglietti\validaciones.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"VALIDACIONES.h"
+
+1531310348 d:\famiglietti\famiglietti\validaciones.h
+

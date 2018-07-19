@@ -106,23 +106,23 @@ void gettersSetters(char nombreArchivo[50], char nombreEstructura[50], char nomb
                         fprintf(h, "\tint %s;\n", nombreVariable);
 
                         //Agrega firma de la funcion a un archivo temporal (con doxygen incluido)
-                        //fprintf(fp, "%s", "\n\n/** \brief Setter.\n");
-                        //fprintf(fp, "%s", " *\n");
-                        //fprintf(fp, "%s", " *\n");
-                        //fprintf(fp, " * \\param this %s* El puntero a la estructura donde se va a asingnar la variable %s.\n", nombreEstructura, nombreVariable);
-                        //fprintf(fp, " * \\param %s int La variable %s que se va a asingar.\n", nombreVariable, nombreVariable);
-                        //fprintf(fp, "%s", " * \return int Devuelve -1 si hay error, sino devuelve 0.\n");
-                        //fprintf(fp, "%s", " *\n");
-                        //fprintf(fp, "%s", " */\n");
+                        fprintf(fp, "%s", "\n\n/** \\brief Setter.\n");
+                        fprintf(fp, "%s", " *\n");
+                        fprintf(fp, "%s", " *\n");
+                        fprintf(fp, " * \\param this %s* El puntero a la estructura donde se va a asingnar la variable %s.\n", nombreEstructura, nombreVariable);
+                        fprintf(fp, " * \\param %s int La variable %s que se va a asingar.\n", nombreVariable, nombreVariable);
+                        fprintf(fp, "%s", " * \\return int Devuelve -1 si hay error, sino devuelve 0.\n");
+                        fprintf(fp, "%s", " *\n");
+                        fprintf(fp, "%s", " */\n");
                         fprintf(fp, "int %s_set%s(%s* this, int %s);\n", nombreEstructura, nombreVariable, nombreEstructura, nombreVariable);
 
-                        //fprintf(fp, "%s", "\n\n/** \brief Getter.\n");
-                        //fprintf(fp, "%s", " *\n");
-                       // fprintf(fp, "%s", " *\n");
-                        //fprintf(fp, " * \\param this %s* El puntero a estructura donde se obtiene la variable %s.\n", nombreEstructura, nombreVariable);
-                       // fprintf(fp, "%s", " * \return int Devuelve -1 si hay error, sino devuelve 0.\n");
-                        //fprintf(fp, "%s", " *\n");
-                       // fprintf(fp, "%s", " */\n");
+                        fprintf(fp, "%s", "\n\n/** \\brief Getter.\n");
+                        fprintf(fp, "%s", " *\n");
+                        fprintf(fp, "%s", " *\n");
+                        fprintf(fp, " * \\param this %s* El puntero a estructura donde se obtiene la variable %s.\n", nombreEstructura, nombreVariable);
+                        fprintf(fp, "%s", " * \\return int Devuelve -1 si hay error, sino devuelve 0.\n");
+                        fprintf(fp, "%s", " *\n");
+                        fprintf(fp, "%s", " */\n");
                         fprintf(fp, "int %s_get%s(%s* this);\n", nombreEstructura, nombreVariable, nombreEstructura);
 
 
@@ -145,23 +145,23 @@ void gettersSetters(char nombreArchivo[50], char nombreEstructura[50], char nomb
 
                         fprintf(h, "\tfloat %s;\n", nombreVariable);
 
-                       // fprintf(fp, "%s", "\n\n/** \brief Setter.\n");
-                       // fprintf(fp, "%s", " *\n");
-                       // fprintf(fp, "%s", " *\n");
-                      //  fprintf(fp, " * \\param this %s* El puntero a la estructura donde se va a asingnar la variable %s.\n", nombreEstructura, nombreVariable);
-                      //  fprintf(fp, " * \\param %s float La variable %s que se va a asingar.\n", nombreVariable, nombreVariable);
-                      //  fprintf(fp, "%s", " * \return int Devuelve -1 si hay error, sino devuelve 0.\n");
-                      //  fprintf(fp, "%s", " *\n");
-                      //  fprintf(fp, "%s", " */\n");
+                        fprintf(fp, "%s", "\n\n/** \\brief Setter.\n");
+                        fprintf(fp, "%s", " *\n");
+                        fprintf(fp, "%s", " *\n");
+                        fprintf(fp, " * \\param this %s* El puntero a la estructura donde se va a asingnar la variable %s.\n", nombreEstructura, nombreVariable);
+                        fprintf(fp, " * \\param %s float La variable %s que se va a asingar.\n", nombreVariable, nombreVariable);
+                        fprintf(fp, "%s", " * \\return int Devuelve -1 si hay error, sino devuelve 0.\n");
+                        fprintf(fp, "%s", " *\n");
+                        fprintf(fp, "%s", " */\n");
                         fprintf(fp, "int %s_set%s(%s* this, float %s);\n", nombreEstructura, nombreVariable, nombreEstructura, nombreVariable);
 
-                      //  fprintf(fp, "%s", "\n\n/** \brief Getter.\n");
-                       // fprintf(fp, "%s", " *\n");
-                       // fprintf(fp, "%s", " *\n");
-                       // fprintf(fp, " * \\param this %s* El puntero a estructura donde se obtiene la variable %s.\n", nombreEstructura, nombreVariable);
-                       // fprintf(fp, "%s", " * \return int Devuelve -1 si hay error, sino devuelve 0.\n");
-                      //  fprintf(fp, "%s", " *\n");
-                      //  fprintf(fp, "%s", " */\n");
+                        fprintf(fp, "%s", "\n\n/** \\brief Getter.\n");
+                        fprintf(fp, "%s", " *\n");
+                        fprintf(fp, "%s", " *\n");
+                        fprintf(fp, " * \\param this %s* El puntero a estructura donde se obtiene la variable %s.\n", nombreEstructura, nombreVariable);
+                        fprintf(fp, "%s", " * \\return int Devuelve -1 si hay error, sino devuelve 0.\n");
+                        fprintf(fp, "%s", " *\n");
+                        fprintf(fp, "%s", " */\n");
                         fprintf(fp, "int %s_get%s(%s* this);\n", nombreEstructura, nombreVariable, nombreEstructura);
 
                         printf("\nGetter y Setter generado con exito!\n");
@@ -187,23 +187,23 @@ void gettersSetters(char nombreArchivo[50], char nombreEstructura[50], char nomb
 
                         fprintf(h, "\tchar %s[%d];\n", nombreVariable, opcion);
 
-                       // fprintf(fp, "%s", "\n\n/** \brief Setter.\n");
-                       // fprintf(fp, "%s", " *\n");
-                        //fprintf(fp, "%s", " *\n");
-                      //  fprintf(fp, " * \\param this %s* El puntero a la estructura donde se va a asingnar la variable %s.\n", nombreEstructura, nombreVariable);
-                       // fprintf(fp, " * \\param %s char* La variable %s que se va a asingar.\n", nombreVariable, nombreVariable);
-                      //  fprintf(fp, "%s", " * \return int Devuelve -1 si hay error, sino devuelve 0.\n");
-                       // fprintf(fp, "%s", " *\n");
-                     //   fprintf(fp, "%s", " */\n");
+                        fprintf(fp, "%s", "\n\n/** \\brief Setter.\n");
+                        fprintf(fp, "%s", " *\n");
+                        fprintf(fp, "%s", " *\n");
+                        fprintf(fp, " * \\param this %s* El puntero a la estructura donde se va a asingnar la variable %s.\n", nombreEstructura, nombreVariable);
+                        fprintf(fp, " * \\param %s char* La variable %s que se va a asingar.\n", nombreVariable, nombreVariable);
+                        fprintf(fp, "%s", " * \\return int Devuelve -1 si hay error, sino devuelve 0.\n");
+                        fprintf(fp, "%s", " *\n");
+                        fprintf(fp, "%s", " */\n");
                         fprintf(fp, "int %s_set%s(%s* this, char* %s);\n", nombreEstructura, nombreVariable, nombreEstructura, nombreVariable);
 
-                       // fprintf(fp, "%s", "\n\n/** \brief Getter.\n");
-                       // fprintf(fp, "%s", " *\n");
-                      //  fprintf(fp, "%s", " *\n");
-                      //  fprintf(fp, " * \\param this %s* El puntero a estructura donde se obtiene la variable %s.\n", nombreEstructura, nombreVariable);
-                       // fprintf(fp, "%s", " * \return int Devuelve -1 si hay error, sino devuelve 0.\n");
-                       // fprintf(fp, "%s", " *\n");
-                      //  fprintf(fp, "%s", " */\n");
+                        fprintf(fp, "%s", "\n\n/** \\brief Getter.\n");
+                        fprintf(fp, "%s", " *\n");
+                        fprintf(fp, "%s", " *\n");
+                        fprintf(fp, " * \\param this %s* El puntero a estructura donde se obtiene la variable %s.\n", nombreEstructura, nombreVariable);
+                        fprintf(fp, "%s", " * \\return int Devuelve -1 si hay error, sino devuelve 0.\n");
+                        fprintf(fp, "%s", " *\n");
+                        fprintf(fp, "%s", " */\n");
                         fprintf(fp, "int %s_get%s(%s* this);\n", nombreEstructura, nombreVariable, nombreEstructura);
 
                         printf("\nGetter y Setter generado con exito!\n");
@@ -231,12 +231,12 @@ void constructor(char nombreArchivoC[50], char nombreEstructura[50])
         fprintf(pFile, "\n\n%s* %s_new(void)\n{\n\t%s* returnAux = (%s*) malloc(sizeof(%s));", nombreEstructura, nombreEstructura, nombreEstructura, nombreEstructura, nombreEstructura);
         fprintf(pFile, "%s", "\n\treturn returnAux;\n} ");
 
-       // fprintf(fp, "%s", "/** \brief Constructor.\n");
-       // fprintf(fp, "%s", " *\n");
-       // fprintf(fp, "%s", " * \\param void\n");
-       // fprintf(fp, " * \return %s* Puntero a estructura\n", nombreEstructura);
-       // fprintf(fp, "%s", " *\n");
-      //  fprintf(fp, "%s", " */\n");
+        fprintf(fp, "%s", "/** \\brief Constructor.\n");
+        fprintf(fp, "%s", " *\n");
+        fprintf(fp, "%s", " * \\param void\n");
+        fprintf(fp, " * \\return %s* Puntero a estructura\n", nombreEstructura);
+        fprintf(fp, "%s", " *\n");
+        fprintf(fp, "%s", " */\n");
         fprintf(fp, "%s* %s_new(void);\n", nombreEstructura, nombreEstructura);
 
         printf("\nConstructor generado con exito!\n");

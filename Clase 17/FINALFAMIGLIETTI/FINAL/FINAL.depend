@@ -1,0 +1,53 @@
+# depslib dependency file v1.0
+1532037670 source:d:\finalfamiglietti\final\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1532037670 d:\finalfamiglietti\final\arraylist.h
+
+1532526062 source:d:\finalfamiglietti\final\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+	"letras.h"
+	"ArrayList.h"
+
+1532523157 d:\finalfamiglietti\final\funciones.h
+	"ArrayList.h"
+
+1532525982 d:\finalfamiglietti\final\letras.h
+	"ArrayList.h"
+
+1532525966 source:d:\finalfamiglietti\final\letras.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"letras.h"
+	"ArrayList.h"
+
+1532519992 source:d:\finalfamiglietti\final\main.c
+	<stdio.h>
+	<stdlib.h>
+	"menu.h"
+
+1532519773 d:\finalfamiglietti\final\menu.h
+
+1532524035 source:d:\finalfamiglietti\final\menu.c
+	<stdio.h>
+	<stdlib.h>
+	"menu.h"
+	"ArrayList.h"
+	"funciones.h"
+	"letras.h"
+
+1532037670 source:d:\finalfamiglietti\final\validaciones.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"VALIDACIONES.h"
+
+1532037670 d:\finalfamiglietti\final\validaciones.h
+

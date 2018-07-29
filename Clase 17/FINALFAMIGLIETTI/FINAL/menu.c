@@ -7,13 +7,15 @@
 
 void mostrarMenu()
 {
-    ArrayList* lista;
+    ArrayList* lista; //La lista sin completar
     lista=al_newArrayList();
 
-    ArrayList* listaDos;
+    ArrayList* listaDos; //La lista completada
     listaDos=al_newArrayList();
 
     parserLetras(lista);
+
+    completar(listaDos);
 
     char seguir='s';
     int opcion;
@@ -22,9 +24,9 @@ void mostrarMenu()
     {
         printf("\n1- Altas\n");
         printf("2- Completar\n");
-        printf("3- Listar\n");
-        printf("4- \n");
-        printf("5- \n");
+        printf("3- Listar A\n");
+        printf("4- Listar B\n");
+        printf("5- Generar archivos\n");
         printf("6- Salir\n");
 
         fflush(stdin);
@@ -42,25 +44,30 @@ void mostrarMenu()
 
             case 2:
                 {
-                    completar(listaDos);
+                    eLetra_printAll(listaDos);
                 }
                 break;
 
             case 3:
                 {
-                    listar();
+                    listarA(listaDos);
                 }
 
                 break;
             case 4:
                 {
-
-
+                    listarB(listaDos);
                 }
                 break;
             case 5:
                 {
+                    ArrayList* listaRepetidos;
+                    listaRepetidos = al_newArrayList();
 
+                    generarCompleto(listaDos);
+                    listaRepetidos=generarRepetidos(listaDos);
+
+                    generarDepurado(listaDos,listaRepetidos);
                 }
                 break;
             default:

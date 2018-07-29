@@ -10,39 +10,14 @@ eLetra* eLetra_new(void)
 	return returnAux;
 }
 
-int eLetra_setcaracter(eLetra* this, char* caracter)
+int eLetra_setletra(eLetra* this, char letra)
 {
 	int retorno=-1;
 
 	if(this!=NULL)
 	{
 		retorno=0;
-		this->caracter=caracter;
-	}
-
-	return retorno;
-}
-
-int eLetra_getcaracter(eLetra* this)
-{
-	int retorno=-1;
-
-	if(this!=NULL)
-	{
-		retorno=this->caracter;
-	}
-
-	return retorno;
-}
-
-int eLetra_setletra(eLetra* this, char* letra)
-{
-	int retorno=-1;
-
-	if(this!=NULL && letra!=NULL)
-	{
-		retorno=0;
-		strcpy(this->letra,letra);
+		this->letra=letra;
 	}
 	return retorno;
 }
@@ -83,14 +58,14 @@ int eLetra_getnombre(eLetra* this)
 	return retorno;
 }
 
-int eLetra_setvocal(eLetra* this, char* vocal)
+int eLetra_setvocal(eLetra* this, int vocal)
 {
 	int retorno=-1;
 
 	if(this!=NULL)
 	{
 		retorno=0;
-		strcpy(this->vocal,vocal);
+		this->vocal=vocal;
 	}
 
 	return retorno;
@@ -108,14 +83,14 @@ int eLetra_getvocal(eLetra* this)
 	return retorno;
 }
 
-int eLetra_setconsonante(eLetra* this, char* consonante)
+int eLetra_setconsonante(eLetra* this, int consonante)
 {
 	int retorno=-1;
 
 	if(this!=NULL)
 	{
 		retorno=0;
-		strcpy(this->consonante,consonante);
+		this->consonante=consonante;
 	}
 
 	return retorno;
@@ -133,11 +108,11 @@ int eLetra_getconsonante(eLetra* this)
 	return retorno;
 }
 
-int esVocalChar(char letra)
+int esV(char letra)
 {
-    int retorno=0;
+    char retorno=0;
 
-    if(letra=='a' || letra=='e' || letra=='i' || letra=='o' || letra=='u' || letra=='A' || letra=='E' || letra=='I' || letra=='O' || letra=='U')
+    if(toupper(letra)=='A' || toupper(letra)=='E' || toupper(letra)=='I' || toupper(letra)=='O' || toupper(letra)=='U')
     {
         retorno=1;
     }
@@ -145,11 +120,11 @@ int esVocalChar(char letra)
     return retorno;
 }
 
-int esConsonanteChar(char letra)
+int esC(char letra)
 {
     int retorno=0;
 
-    if(!(letra=='a' || letra=='e' || letra=='i' || letra=='o' || letra=='u' || letra=='A' || letra=='E' || letra=='I' || letra=='O' || letra=='U'))
+    if(!(toupper(letra)=='A' || toupper(letra)=='E' || toupper(letra)=='I' || toupper(letra)=='O' || toupper(letra)=='U'))
     {
         if(letra!='1' && letra!='2' && letra!='0' && letra!='3' && letra!='4' && letra!='5' && letra!='6' && letra!='7' && letra!='8' && letra!='9')
         {
@@ -163,19 +138,19 @@ int esConsonanteChar(char letra)
 
 void eLetra_print(eLetra* this)
 {
-    char letra[5];
+    char letra;
 	char nombre[22];
-	char vocal[3];
-	char consonante[3];
+	int vocal;
+	int consonante;
 
     if(this != NULL && strcmp(eLetra_getnombre(this),"nombre")!=0)
     {
-            strcpy(letra,eLetra_getletra(this));
+            letra=eLetra_getletra(this);
             strcpy(nombre,eLetra_getnombre(this));
-            strcpy(vocal,eLetra_getvocal(this));
-            strcpy(consonante,eLetra_getconsonante(this));
+            vocal=eLetra_getvocal(this);
+            consonante=eLetra_getconsonante(this);
 
-            printf("%s\t%s\t%s\t%s\n", letra,nombre, vocal, consonante);
+            printf("%c\t%s\t%d\t%d\n", letra,nombre, vocal, consonante);
     }
 
 }
@@ -201,50 +176,25 @@ void eLetra_printAll(ArrayList* this)
     }
 }
 
-int esVocal(eLetra* this)
+int compararAlfabeticamente(void* letraA, void* letraB)
 {
-    int retorno=0;
+    int retorno = 0;
 
-    if(strcmp(this->letra, "a")==0 || strcmp(this->letra, "e")==0 || strcmp(this->letra, "i")==0 || strcmp(this->letra, "o")==0 || strcmp(this->letra, "u")==0 || strcmp(this->letra, "A")==0 || strcmp(this->letra, "E")==0 || strcmp(this->letra, "I")==0 || strcmp(this->letra, "O")==0 || strcmp(this->letra, "U")==0)
+    eLetra* letra1;
+    eLetra* letra2;
+
+    letra1 = (eLetra*) letraA;
+    letra2 = (eLetra*) letraB;
+
+    if(letra1->letra < letra2->letra)
     {
-        retorno=1;
+        retorno = -1;
+    }
+
+    if(letra1->letra > letra2->letra)
+    {
+        retorno = 1;
     }
 
     return retorno;
-}
-
-int esConsonante(eLetra* this)
-{
-    int retorno=0;
-
-    if(!(strcmp(this->letra, "a")==0 || strcmp(this->letra, "e")==0 || strcmp(this->letra, "i")==0 || strcmp(this->letra, "o")==0 || strcmp(this->letra, "u")==0 || strcmp(this->letra, "A")==0 || strcmp(this->letra, "E")==0 || strcmp(this->letra, "I")==0 || strcmp(this->letra, "O")==0 || strcmp(this->letra, "U")==0))
-    {
-        if(strcmp(this->letra, "0")!=0 && strcmp(this->letra, "1")!=0 && strcmp(this->letra, "2")!=0 && strcmp(this->letra, "3")!=0 && strcmp(this->letra, "4")!=0 && strcmp(this->letra, "5")!=0 && strcmp(this->letra, "6")!=0 && strcmp(this->letra, "7")!=0 && strcmp(this->letra, "8")!=0 && strcmp(this->letra, "9")!=0)
-        {
-            retorno=1;
-        }
-
-    }
-
-    return retorno;
-}
-
-void eLetra_printT(eLetra* this)
-{
-    char letra[5];
-	char nombre[22];
-	char vocal[3];
-	char consonante[3];
-	char caracter;
-
-    if(this != NULL && strcmp(eLetra_getnombre(this),"nombre")!=0)
-    {
-            caracter=this->caracter;
-            strcpy(nombre,eLetra_getnombre(this));
-            strcpy(vocal,eLetra_getvocal(this));
-            strcpy(consonante,eLetra_getconsonante(this));
-
-            printf("%c\t%s\t%s\t%s\n", caracter,nombre, vocal, consonante);
-    }
-
 }

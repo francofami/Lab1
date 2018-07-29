@@ -9,10 +9,10 @@ int parserLetras(ArrayList* this)
     int retorno = -1;
 
     FILE* pFile;
-    char letra[5];
+    char letra;
 	char nombre[22];
-	char vocal[3];
-	char consonante[3];
+	int vocal;
+	int consonante;
 
     eLetra* aux;
 
@@ -25,13 +25,12 @@ int parserLetras(ArrayList* this)
         do
         {
             aux = (eLetra*) malloc(sizeof(eLetra));
-            fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",letra,nombre,vocal,consonante);
+
+            fscanf(pFile,"%c,%[^,],%d,%d\n",&letra,nombre,&vocal,&consonante);
             eLetra_setletra(aux, letra);
             eLetra_setnombre(aux,nombre);
             eLetra_setvocal(aux,vocal);
             eLetra_setconsonante(aux,consonante);
-
-            //aux = destinatarios_newParametros(name,mail, contador, 1);
 
             this->add(this,aux);
         }while(!feof(pFile));
@@ -46,12 +45,10 @@ int parserLetras(ArrayList* this)
 void completar(ArrayList* this)
 {
     FILE* pFile;
-    char letra[5];
+    char letra;
 	char nombre[22];
-	char vocal[3];
-	char consonante[3];
-	int esV;
-	int esC;
+	int vocal;
+	int consonante;
 
     eLetra* aux;
 
@@ -62,126 +59,273 @@ void completar(ArrayList* this)
 
         this->clear(this);
 
-        //printf("Id\tNum\tPar\tImpar\tPrimo\tNombre\n");
-
         while(!feof(pFile))
         {
             aux = eLetra_new();
 
-            fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",letra,nombre,vocal,consonante);
+            fscanf(pFile,"%c,%[^,],%d,%d\n",&letra,nombre,&vocal,&consonante);
 
 
-                eLetra_setletra(aux, letra);
-                eLetra_setnombre(aux, nombre);
+            eLetra_setletra(aux, letra);
+            eLetra_setnombre(aux, nombre);
 
-                esV=esVocal(aux);
-                esC=esConsonante(aux);
+            eLetra_setvocal(aux,esV(aux->letra));
+            eLetra_setconsonante(aux,esC(aux->letra));
 
-                if(esV==1)
-                {
-                    strcpy(vocal, "1");
-                }
-                else
-                {
-                    strcpy(vocal, "0");
-                }
-
-                if(esC==1)
-                {
-                    strcpy(consonante, "1");
-                }
-                else
-                {
-                    strcpy(consonante, "0");
-                }
-
-                eLetra_setvocal(aux,vocal);
-                eLetra_setconsonante(aux,consonante);
-
-                this->add(this,aux);
+            this->add(this,aux);
         }
-
-       eLetra_printAll(this);
     }
 
     fclose(pFile);
 }
 
-void listar()
+ArrayList* listarA(ArrayList* this)
 {
-    eLetra* aux;
-    ArrayList* lista;
-
-    int i,j;
+    ArrayList* listaNueva;
+    listaNueva = al_newArrayList();
     char cadena[10];
-
-    char letra[5];
-	char nombre[22];
-	char vocal[3];
-	char consonante[3];
-	char caracter;
-	int esV;
-	int esC;
-	int largoCadena;
-	char auxiChar;
-
-	char auxi[22];
-
-    lista=al_newArrayList();
+    int largoCadena, largoLista, i, j;
+    eLetra* aux;
 
     printf("Ingrese cadena de caracteres: ");
     fflush(stdin);
     gets(cadena);
 
     largoCadena=strlen(cadena);
+    largoLista=this->len(this);
 
-    for(i=0;i<largoCadena-1;i++)
+    for(i=0;i<largoCadena;i++)
     {
-        for(j=i+1;j<largoCadena;j++)
+        printf("\nLetra: %c\n", cadena[i]);
+
+        for(j=0;j<largoLista;j++)
         {
-            if(cadena[i]<cadena[j])
+            aux = eLetra_new();
+
+            aux = this->get(this, j);
+
+            if(cadena[i]==aux->letra)
             {
-                auxiChar=cadena[j];
-                cadena[j]=cadena[i];
-                cadena[i]=auxiChar;
+                listaNueva->add(listaNueva, aux);
             }
         }
     }
 
+    listaNueva->sort(listaNueva,compararAlfabeticamente,1);
 
+    eLetra_printAll(listaNueva);
 
-    printf("Letra\tVocal\tConsonante\n");
+    return listaNueva;
+}
+
+ArrayList* listarB(ArrayList* this)
+{
+    ArrayList* listaNueva;
+    listaNueva = al_newArrayList();
+    char cadena[10];
+    int largoCadena, largoLista, i, j;
+    eLetra* aux;
+
+    printf("Ingrese cadena de caracteres: ");
+    fflush(stdin);
+    gets(cadena);
+
+    largoCadena=strlen(cadena);
+    largoLista=this->len(this);
+
+    listaNueva=this->clone(this);
 
     for(i=0;i<largoCadena;i++)
     {
-        caracter=cadena[i];
-
-        esV=esVocalChar(cadena[i]);
-        esC=esConsonanteChar(cadena[i]);
-
-        if(esV==1)
+        for(j=0;j<largoLista;j++)
         {
-            strcpy(vocal, "1");
-        }
-        else
-        {
-            strcpy(vocal, "0");
-        }
+            aux = eLetra_new();
 
-        if(esC==1)
-        {
-            strcpy(consonante, "1");
-        }
-        else
-        {
-            strcpy(consonante, "0");
-        }
+            aux = this->get(this, j);
 
-        printf("%c\t%s\t%s\n", caracter, vocal, consonante);
-
-        eLetra_setcaracter(aux, caracter);
-        eLetra_setconsonante(aux, consonante);
-        eLetra_setvocal(aux, vocal);
-        lista->add(lista,aux);
+            if(cadena[i]==aux->letra)
+            {
+                listaNueva->remove(listaNueva,j);
+            }
+        }
     }
+
+    listaNueva->sort(listaNueva,compararAlfabeticamente,0);
+
+    eLetra_printAll(listaNueva);
+
+    return listaNueva;
+}
+
+void generarCompleto(ArrayList* this)
+{
+    FILE* fp;
+
+    fp = fopen("completo.csv", "w");
+
+    if(fp!=NULL)
+    {
+        char letra;
+        char nombre[22];
+        int vocal;
+        int consonante;
+        eLetra* aux;
+
+       int largoLista, i;
+
+       largoLista = this->len(this);
+
+       for(i=0;i<largoLista;i++)
+       {
+           aux = eLetra_new();
+           aux = this->get(this, i);
+
+           letra = aux->letra;
+           strcpy(nombre, aux->nombre);
+           vocal = aux->vocal;
+           consonante = aux->consonante;
+
+           fprintf(fp, "%c, %s, %d, %d\n", letra,nombre,vocal,consonante);
+       }
+    }
+
+    fclose(fp);
+}
+
+ArrayList* generarRepetidos(ArrayList* this)
+{
+    FILE* fp;
+    FILE* fp2;
+    ArrayList* listaNueva;
+    listaNueva = al_newArrayList();
+    eLetra* aux;
+    eLetra* aux2;
+
+    fp = fopen("completo.csv", "r");
+
+    if(fp!=NULL)
+    {
+        int i, j, largoLista, ultimoValor=-1;
+
+        largoLista = this->len(this);
+
+        this->sort(this,compararAlfabeticamente,1);
+
+        for(i=0;i<largoLista;i++)
+        {
+            aux = eLetra_new();
+            aux = this->get(this,i);
+
+            if(ultimoValor>0)
+            {
+                aux2 = eLetra_new();
+                aux2 = this->get(this,ultimoValor);
+            }
+
+            if(i==0 || (aux2->letra != aux->letra) )
+            {
+                for(j=i+1;j<largoLista;j++)
+                {
+                    aux2 = eLetra_new();
+                    aux2 = this->get(this,j);
+
+                    if(aux->letra == aux2->letra)
+                    {
+                        listaNueva->add(listaNueva, aux2);
+                        ultimoValor=j;
+                    }
+                }
+            }
+        }
+
+        fclose(fp);
+
+    fp2 = fopen("repetidos.csv", "w");
+
+    if(fp2!=NULL)
+    {
+        char letra;
+        char nombre[22];
+        int vocal;
+        int consonante;
+        eLetra* aux;
+
+       int largoListaNueva, i;
+
+       largoListaNueva = listaNueva->len(listaNueva);
+
+       for(i=0;i<largoListaNueva;i++)
+       {
+           aux = eLetra_new();
+           aux = listaNueva->get(listaNueva, i);
+
+           letra = aux->letra;
+           strcpy(nombre, aux->nombre);
+           vocal = aux->vocal;
+           consonante = aux->consonante;
+
+           fprintf(fp, "%c, %s, %d, %d\n", letra,nombre,vocal,consonante);
+       }
+    }
+
+    fclose(fp2);
+
+    }
+
+    return listaNueva;
+}
+
+void generarDepurado(ArrayList* listaCompleta, ArrayList* listaRepetidos)
+{
+    FILE* fp;
+    ArrayList* listaFinal;
+    listaFinal=al_newArrayList();
+
+    int largoCompleta, largoRepetidos, i;
+
+    largoCompleta=listaCompleta->len(listaCompleta);
+
+    eLetra* auxCompleta;
+    eLetra* auxRepetidos;
+
+    for(i=0;i<largoCompleta;i++)
+    {
+        auxCompleta = (eLetra*) listaCompleta->get(listaCompleta, i);
+        auxRepetidos = (eLetra*) listaRepetidos->get(listaRepetidos, i);
+
+        if((listaRepetidos->contains(listaRepetidos, auxCompleta))==0)
+        {
+            listaFinal->add(listaFinal, auxCompleta);
+        }
+    }
+
+    fp = fopen("depurados.csv", "w");
+
+    if(fp!=NULL)
+    {
+        int largoFinal;
+        eLetra* aux;
+
+        char letra;
+        char nombre[22];
+        int vocal;
+        int consonante;
+
+        largoFinal = listaFinal->len(listaFinal);
+
+        for(i=0;i<largoFinal;i++)
+        {
+            aux = eLetra_new();
+            aux = listaFinal->get(listaFinal, i);
+
+            letra=aux->letra;
+            strcpy(nombre,aux->nombre);
+            vocal=aux->vocal;
+            consonante=aux->consonante;
+
+            fprintf(fp, "%c, %s, %d, %d\n", letra,nombre,vocal,consonante);
+        }
+    }
+
+    fclose(fp);
 }

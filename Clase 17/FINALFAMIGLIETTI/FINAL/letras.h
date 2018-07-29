@@ -4,11 +4,10 @@
 
 struct
 {
-    char letra[5];
+    char letra;
 	char nombre[22];
-	char vocal[3];
-	char consonante[3];
-	char caracter;
+	int vocal;
+	int consonante;
 
 }typedef eLetra;
 
@@ -22,7 +21,6 @@ struct
  */
 eLetra* eLetra_new(void);
 
-void eLetra_printT(eLetra* this);
 
 
 /** \brief Setter.
@@ -33,7 +31,7 @@ void eLetra_printT(eLetra* this);
  * \return int Devuelve -1 si hay error, sino devuelve 0.
  *
  */
-int eLetra_setletra(eLetra* this, char* letra);
+int eLetra_setletra(eLetra* this, char letra);
 
 
 /** \brief Getter.
@@ -75,7 +73,7 @@ int eLetra_getnombre(eLetra* this);
  * \return int Devuelve -1 si hay error, sino devuelve 0.
  *
  */
-int eLetra_setvocal(eLetra* this, char* vocal);
+int eLetra_setvocal(eLetra* this, int vocal);
 
 /** \brief Imprime una
  *
@@ -103,14 +101,6 @@ void eLetra_printAll(ArrayList* this);
  */
 int eLetra_getvocal(eLetra* this);
 
-int esVocalChar(char letra);
-
-int esConsonanteChar(char letra);
-
-int eLetra_setcaracter(eLetra* this, char* caracter);
-
-int eLetra_getcaracter(eLetra* this);
-
 /** \brief Setter.
  *
  *
@@ -119,7 +109,7 @@ int eLetra_getcaracter(eLetra* this);
  * \return int Devuelve -1 si hay error, sino devuelve 0.
  *
  */
-int eLetra_setconsonante(eLetra* this, char* consonante);
+int eLetra_setconsonante(eLetra* this, int consonante);
 
 
 /** \brief Getter.
@@ -131,6 +121,8 @@ int eLetra_setconsonante(eLetra* this, char* consonante);
  */
 int eLetra_getconsonante(eLetra* this);
 
-int esVocal(eLetra* this);
+int esV(char letra);
 
-int esConsonante(eLetra* this);
+int esC(char letra);
+
+int compararAlfabeticamente(void* letraA, void* letraB);

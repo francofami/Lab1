@@ -12,6 +12,13 @@ int parserLetras(ArrayList* this);
 
 void completar(ArrayList* this);
 
-void listar();
+ArrayList* listarA(ArrayList* listarDos);
+
+void generarCompleto(ArrayList* this);
+
+ArrayList* generarRepetidos(ArrayList* this);
+
+void generarDepurado(ArrayList* listaCompleta, ArrayList* listaRepetidos);
+
 
 #endif // FUNCIONES_H_INCLUDED
